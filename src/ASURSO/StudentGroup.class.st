@@ -8,8 +8,13 @@ Class {
 		'id',
 		'connection'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
+
+{ #category : #accessing }
+StudentGroup >> activeJournal [
+	^ self journal detect: #isActive
+]
 
 { #category : #accessing }
 StudentGroup >> client [
@@ -69,6 +74,29 @@ StudentGroup >> gtView1For: aView [
 ]
 
 { #category : #views }
+StudentGroup >> gtView2For: aView [
+	<gtView>
+	^ aView forward
+		priority: 5;
+		
+		title: 'Решения для бизнеса';
+		object: [ self activeJournal scheduleSubjects
+				detect: [ :x | x name includesSubstring: 'решения для бизнеса' ] ];
+		view: #gtPairsFor:
+]
+
+{ #category : #views }
+StudentGroup >> gtView3For: aView [
+	<gtView>
+	^ aView forward
+		priority: 7;
+		title: 'Инструментальные средства';
+		object: [ self activeJournal scheduleSubjects
+				detect: [ :x | x name includesSubstring: 'Инструментальные средства' ] ];
+		view: #gtPairsFor:
+]
+
+{ #category : #views }
 StudentGroup >> gtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -106,7 +134,9 @@ StudentGroup >> journal [
 						customDo: (connection injectMapping: StudySubject);
 					for: StudySubject do: #mapInstVars;
 					nextAs: #Courses ].
-	items do: [:c | c scheduleSubjects do: [:s | s subjectGrade: c ]].
+	items do: [:c | 
+		c studentGroup: self.
+		c scheduleSubjects do: [:s | s subjectGrade: c ]].
 	^items
 ]
 

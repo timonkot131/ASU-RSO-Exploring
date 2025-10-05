@@ -7,7 +7,7 @@ Class {
 		'middleName',
 		'id'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #accessing }

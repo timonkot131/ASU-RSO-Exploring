@@ -5,10 +5,15 @@ Class {
 		'lessons',
 		'students',
 		'studySubject',
-		'connection'
+		'connection',
+		'workingProgram'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
+
+{ #category : #'as yet unclassified' }
+SubjectTable >> cleanTasks: aSubjectLeson [
+]
 
 { #category : #'as yet unclassified' }
 SubjectTable >> client [ 
@@ -28,10 +33,28 @@ SubjectTable >> connection: anObject [
 { #category : #views }
 SubjectTable >> gtLessonsFor: aView [
 	<gtView>
-	^ aView forward
+	^ aView columnedList
 		title: 'Пары';
-		object: [ lessons ];
-		view: #gtItemsFor:
+		items: [ lessons ];
+		column: 'Дата'
+			text: #dateString
+			width: 100;
+		column: 'Название'
+			text: #name
+			width: 440;
+		column: 'Задание' text: #taskString;
+
+		in: [ :view | 
+			self connection tasks
+				do: [ :each | 
+					view
+						contextItemLabel: 'Добавить ' , each name
+						action: [ :element :item | 
+							
+							element phlow fireViewUpdateWish ] ].
+
+			view contextItemLabel: 'Удалить задание' action: [ :element :item |  
+			] ]
 ]
 
 { #category : #views }
@@ -41,6 +64,15 @@ SubjectTable >> gtStudentsFor: aView [
 		title: 'Студенты';
 		object: [ students ];
 		view: #gtItemsFor:
+]
+
+{ #category : #views }
+SubjectTable >> gtWorkingProgramFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'WorkingProgram наполнение';
+		object: [ workingProgram ];
+		view: #gtProgrammTree:context:
 ]
 
 { #category : #accessing }
@@ -71,4 +103,14 @@ SubjectTable >> studySubject [
 { #category : #accessing }
 SubjectTable >> studySubject: anObject [
 	studySubject := anObject
+]
+
+{ #category : #accessing }
+SubjectTable >> workingProgramm [
+	^ workingProgram
+]
+
+{ #category : #accessing }
+SubjectTable >> workingProgramm: anObject [
+	workingProgram := anObject
 ]

@@ -1,6 +1,6 @@
 Extension { #name : #ZnClient }
 
-{ #category : #'*ASU-RSO*' }
+{ #category : #'*ASURSO*' }
 ZnClient >> withStreaming: aBlock [
 	| result |
 	self streaming: true.

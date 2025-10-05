@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'reason'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #'as yet unclassified' }

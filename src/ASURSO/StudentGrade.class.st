@@ -12,9 +12,10 @@ Class {
 		'termNumber',
 		'termType',
 		'startDate',
-		'endDate'
+		'endDate',
+		'studentGroup'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #accessing }
@@ -105,6 +106,16 @@ StudentGrade >> startDate [
 { #category : #accessing }
 StudentGrade >> startDate: anObject [
 	startDate := anObject
+]
+
+{ #category : #accessing }
+StudentGrade >> studentGroup [
+	^ studentGroup
+]
+
+{ #category : #accessing }
+StudentGrade >> studentGroup: anObject [
+	studentGroup := anObject
 ]
 
 { #category : #accessing }

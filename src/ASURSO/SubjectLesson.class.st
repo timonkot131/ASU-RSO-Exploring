@@ -13,9 +13,11 @@ Class {
 		'endTime',
 		'name',
 		'plannedLessons',
+		'studySubject',
+		'workingProgramm',
 		'subjectTable'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #accessing }
@@ -26,6 +28,11 @@ SubjectLesson >> absent [
 				-> (kv value at: 'absenceType') ]) asDictionary
 ]
 
+{ #category : #'as yet unclassified' }
+SubjectLesson >> children [ ^self markSets  "ifNil: [(Dictionary new at: 'noway' put: 'ok'; yourself) associations]"
+ifNil: [{}]
+]
+
 { #category : #accessing }
 SubjectLesson >> date [
 	^ date
@@ -34,6 +41,11 @@ SubjectLesson >> date [
 { #category : #accessing }
 SubjectLesson >> date: anObject [
 	date := anObject
+]
+
+{ #category : #accessing }
+SubjectLesson >> dateString [
+	^ self date asDate yyyymmdd
 ]
 
 { #category : #accessing }
@@ -54,15 +66,6 @@ SubjectLesson >> endTime [
 { #category : #accessing }
 SubjectLesson >> endTime: anObject [
 	endTime := anObject
-]
-
-{ #category : #views }
-SubjectLesson >> gtSubjectTableFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'SubjectTable студенты';
-		object: [ subjectTable ];
-		view: #gtStudentsFor:
 ]
 
 { #category : #views }
@@ -103,9 +106,9 @@ SubjectLesson >> markSets: anObject [
 	markSets := anObject
 ]
 
-{ #category : #accessing }
-SubjectLesson >> name [
-	^ name ifNil: ['Не выставлено']
+{ #category : #'as yet unclassified' }
+SubjectLesson >> name [ 
+^name
 ]
 
 { #category : #accessing }
@@ -125,7 +128,8 @@ SubjectLesson >> plannedLessons: anObject [
 
 { #category : #'as yet unclassified' }
 SubjectLesson >> printOn: aStream [ 
-aStream << self name
+aStream << self name.
+aStream << (' ', self dateString)
 ]
 
 { #category : #accessing }
@@ -148,9 +152,14 @@ SubjectLesson >> startTime: anObject [
 	startTime := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SubjectLesson >> students [
-	^subjectTable students
+^ self subjectTable students
+]
+
+{ #category : #'as yet unclassified' }
+SubjectLesson >> studySubject: aStudySubject [ 
+	studySubject := aStudySubject.
 ]
 
 { #category : #accessing }
@@ -161,6 +170,11 @@ SubjectLesson >> subjectTable [
 { #category : #accessing }
 SubjectLesson >> subjectTable: anObject [
 	subjectTable := anObject
+]
+
+{ #category : #accessing }
+SubjectLesson >> taskString [
+	^ ', ' join: (self tasks collect: #name)
 ]
 
 { #category : #accessing }
@@ -181,4 +195,14 @@ SubjectLesson >> type [
 { #category : #accessing }
 SubjectLesson >> type: anObject [
 	type := anObject
+]
+
+{ #category : #'as yet unclassified' }
+SubjectLesson >> workingProgramm [
+^ workingProgramm
+]
+
+{ #category : #accessing }
+SubjectLesson >> workingProgramm: anObject [
+	workingProgramm := anObject
 ]

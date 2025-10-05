@@ -4,9 +4,10 @@ Class {
 	#instVars : [
 		'credentials',
 		'data',
-		'client'
+		'client',
+		'tasks'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #'as yet unclassified' }
@@ -41,7 +42,7 @@ AsuConnection >> client [
 
 { #category : #accessing }
 AsuConnection >> client: anObject [
-	client := anObject
+	client := anObject 
 ]
 
 { #category : #connection }
@@ -76,21 +77,21 @@ AsuConnection >> groups [
 ]
 
 { #category : #views }
-AsuConnection >> gtClient1For: aView [
-	<gtView>
-	^ aView forward
-		title: 'Client hTTP';
-		object: [ client ];
-		view: #gtHttpFor:
-]
-
-{ #category : #views }
 AsuConnection >> gtClientFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'Client session cookieJar';
 		object: [ client ];
 		view: #gtSessionFor:
+]
+
+{ #category : #views }
+AsuConnection >> gtSolutions: aView [
+	<gtView>
+	^ aView forward
+		title: 'Решения для бизнеса';
+		object: [ self workingProgramms: 'Программные решения для бизнеса' ];
+		view: #gtLiveFor:
 ]
 
 { #category : #views }
@@ -120,4 +121,36 @@ AsuConnection >> injectMapping: aSchemaType [
 	m
 		listOfElementSchema: aSchemaType;
 		reader: [ :r | (r nextListAs: aSchemaType) collect: [ :c | c connection: self ] ] ]
+]
+
+{ #category : #accessing }
+AsuConnection >> tasks [
+	^ tasks
+]
+
+{ #category : #accessing }
+AsuConnection >> tasks: aSubjectTask [
+	tasks := aSubjectTask
+]
+
+{ #category : #'as yet unclassified' }
+AsuConnection >> workingProgramms: aString [
+	| response array |
+	response := client
+			path: '/services/plan/working-programs';
+			queryAt: #programName put: aString;
+			queryAt: #orderBy put: '+name';
+			get.
+	array := (STONJSON fromString: response) at: #workingPrograms.
+	^ array asAsyncStream
+		collect: [ :each | 
+			| res |
+			res := client
+					path: ('/services/plan/working-programs/{id}/thematic-plan' format: each);
+					get.
+			((NeoJSONReader on: res readStream)
+					mapInstVarsFor: ThematicPlan;
+					nextAs: ThematicPlan)
+				connection: self;
+				asWorkingProgramm ]
 ]

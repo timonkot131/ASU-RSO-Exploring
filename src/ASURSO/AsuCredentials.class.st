@@ -6,7 +6,7 @@ Class {
 		'password',
 		'login'
 	],
-	#category : #'ASU-RSO-Model'
+	#category : #'ASURSO-Model'
 }
 
 { #category : #accessing }
