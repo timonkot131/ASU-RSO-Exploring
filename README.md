@@ -3,7 +3,7 @@
 
 ```st
 Metacello new
-	repository: 'github://timonkot131/ASURSO:master/src';
+	repository: 'github://timonkot131/ASU-RSO-Exploring:master/src';
 	baseline: 'ASURSO';
 	load
 ```
