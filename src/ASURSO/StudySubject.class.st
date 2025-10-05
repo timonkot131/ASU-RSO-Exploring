@@ -19,7 +19,7 @@ StudySubject >> = anObject [
  [self name = anObject name]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 StudySubject >> absentEntityOf: anAsuAbsenceReason [ 
 ^ Dictionary new
 	at: #absenceReason put: nil;
@@ -29,14 +29,36 @@ StudySubject >> absentEntityOf: anAsuAbsenceReason [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #API }
 StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArrayOfSubjectUser [
-	| format path |
+	| format path requiredMarks |
 	format := {self subjectGrade id.
 			self id.
-			aSubjectLesson id. }.
-	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks' format: format.
-	self client path: path.
+			aSubjectLesson id}.
+	requiredMarks := Dictionary new
+			in: [ :dict | 
+				anArrayOfSubjectUser
+					do: [ :each | 
+						dict
+							at: each id asString
+							put: {'isRequired' -> true.
+									'value' -> nil} asDictionary ].
+				STONJSON toString: dict ].
+	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks'
+			format: format.
+
+	self client
+		path: path.
+		(self client multiPartFormDataEntity
+				addPart: (ZnMimePart fieldName: 'type' value: aSubjectTask type);
+				addPart: (ZnMimePart fieldName: 'topic' value: aSubjectTask name);
+				addPart: (ZnMimePart fieldName: 'marks' value: requiredMarks);
+				addPart: (ZnMimePart
+						fieldName: 'file'
+						fileName: aSubjectTask file basename
+						entity: (ZnEntity bytes: aSubjectTask file binaryContents))).
+		
+	self client post.
 ]
 
 { #category : #'as yet unclassified' }
@@ -130,7 +152,23 @@ StudySubject >> printOn: aStream [
 aStream << name
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #API }
+StudySubject >> removeTaskForLesson: aSubjectLesson [
+	^aSubjectLesson tasks
+		collect: [ :each | 
+			| format path |
+			format := {self subjectGrade id.
+					self id.
+					aSubjectLesson id.
+					each id}.
+			path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks/{4}'
+					format: format.
+			self client
+				path: path;
+				delete. ]
+]
+
+{ #category : #API }
 StudySubject >> setAbsenceLesson: aSubjectLesson student: aSubjectUser type: anAsuAbsenceReason [
 	| format path |
 	format := {self subjectGrade id.
@@ -189,6 +227,7 @@ StudySubject >> subjectTable [
 					];
 				for: SubjectTask do: [:task | 
 					task mapInstVar: #id.
+					task mapInstVar: #type.
 					task mapInstVar: #name to: #topic 
 					];
 				for: #Tasks customDo: [ :mapping | 

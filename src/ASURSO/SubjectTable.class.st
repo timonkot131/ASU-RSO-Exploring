@@ -36,24 +36,34 @@ SubjectTable >> gtLessonsFor: aView [
 	^ aView columnedList
 		title: 'Пары';
 		items: [ lessons ];
+		actionButtonLabel: 'Стереть все задания' action: [ :element |
+			self lessons do: [:each |  
+			self studySubject removeTaskForLesson: each].
+			element phlow fireViewUpdateWish
+		];
+		withMultipleSelection;
 		column: 'Дата'
 			text: #dateString
 			width: 100;
 		column: 'Название'
-			text: #name
+			text: [:each | (each tasks size > 0) ifTrue: [each name asRopedText foreground: Color blue] ifFalse: [each name]]
 			width: 440;
 		column: 'Задание' text: #taskString;
-
 		in: [ :view | 
 			self connection tasks
 				do: [ :each | 
 					view
-						contextItemLabel: 'Добавить ' , each name
-						action: [ :element :item | 
-							
-							element phlow fireViewUpdateWish ] ].
-
-			view contextItemLabel: 'Удалить задание' action: [ :element :item |  
+					    contextItemLabel: 'Добавить ' , each name
+						action: [ :element :lesson  | 
+						view.
+						self studySubject
+								removeTaskForLesson: lesson;
+								addTask: each forLesson: lesson forUsers: self students.
+						element phlow fireViewUpdateWish
+						] ].
+			view contextItemLabel: 'Удалить задание' action: [ :element :lesson | 
+				self studySubject removeTaskForLesson: lesson.
+				element phlow fireViewUpdateWish
 			] ]
 ]
 

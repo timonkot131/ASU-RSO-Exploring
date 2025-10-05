@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'name',
 		'file',
-		'id'
+		'id',
+		'type'
 	],
 	#category : #'ASURSO-Model'
 }
@@ -40,6 +41,16 @@ SubjectTask >> hash [
 ]
 
 { #category : #accessing }
+SubjectTask >> id [
+	^ id
+]
+
+{ #category : #accessing }
+SubjectTask >> id: anObject [
+	id := anObject
+]
+
+{ #category : #accessing }
 SubjectTask >> name [
 	^ name
 ]
@@ -47,4 +58,14 @@ SubjectTask >> name [
 { #category : #accessing }
 SubjectTask >> name: anObject [
 	name := anObject
+]
+
+{ #category : #accessing }
+SubjectTask >> type [
+	^ type ifNil: ['PracticalWork']
+]
+
+{ #category : #accessing }
+SubjectTask >> type: anObject [
+	type := anObject
 ]
