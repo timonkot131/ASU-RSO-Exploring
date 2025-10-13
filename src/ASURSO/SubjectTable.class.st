@@ -50,6 +50,7 @@ SubjectTable >> gtLessonsFor: aView [
 			width: 100;
 		column: 'Название'
 			text: [ :each | 
+				
 				each tasks size > 0
 					ifTrue: [ each name asRopedText foreground: Color blue ]
 					ifFalse: [ each name ] ]
