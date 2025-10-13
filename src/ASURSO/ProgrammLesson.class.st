@@ -16,6 +16,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+ProgrammLesson >> = anObject [
+^((anObject isKindOf: ProgrammLesson) or: [ anObject isKindOf: SubjectLesson]) ifTrue: [ self name = anObject name ]
+]
+
+{ #category : #'as yet unclassified' }
 ProgrammLesson >> client [
 	^self connection client
 ]
@@ -48,6 +53,11 @@ ProgrammLesson >> duration [
 { #category : #accessing }
 ProgrammLesson >> duration: anObject [
 	duration := anObject
+]
+
+{ #category : #comparing }
+ProgrammLesson >> hash [
+	^ self name hash hashMultiply
 ]
 
 { #category : #accessing }

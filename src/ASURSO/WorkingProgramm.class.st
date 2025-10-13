@@ -28,6 +28,9 @@ WorkingProgramm >> gtProgrammTree: aView context: aContext [
 		expandUpTo: 1;
 		title: 'Наполнение';
 		items: [ self topics ];
+		contextItemLabel: 'Скопировать' action: [ :element :item |
+			Clipboard clipboardText: item asString.
+		];
 		children: [ :each | each children ]
 ]
 
@@ -49,6 +52,11 @@ WorkingProgramm >> isApproved [
 { #category : #accessing }
 WorkingProgramm >> isApproved: anObject [
 	isApproved := anObject
+]
+
+{ #category : #accessing }
+WorkingProgramm >> lessons [
+	^ self topics flatCollect: #lessons
 ]
 
 { #category : #accessing }

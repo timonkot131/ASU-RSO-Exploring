@@ -20,6 +20,11 @@ Class {
 	#category : #'ASURSO-Model'
 }
 
+{ #category : #'as yet unclassified' }
+SubjectLesson >> = anObject [
+^((anObject isKindOf: ProgrammLesson) or: [ anObject isKindOf: SubjectLesson]) ifTrue: [ self name = anObject name ]
+]
+
 { #category : #accessing }
 SubjectLesson >> absent [
 	^(self markSets associations select: [:kv | kv value includesKey: #absenceType]
@@ -84,6 +89,11 @@ SubjectLesson >> gtViewFor: aView [
 		title: 'Отсутствующие';
 		object: [ self absent ];
 		view: #gtItemsFor:
+]
+
+{ #category : #comparing }
+SubjectLesson >> hash [
+	^ self name hash hashMultiply
 ]
 
 { #category : #accessing }

@@ -46,8 +46,9 @@ StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArra
 				STONJSON toString: dict ].
 	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks'
 			format: format.
-
+	
 	self client
+		resetEntity;
 		path: path.
 		(self client multiPartFormDataEntity
 				addPart: (ZnMimePart fieldName: 'type' value: aSubjectTask type);
@@ -59,6 +60,18 @@ StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArra
 						entity: (ZnEntity bytes: aSubjectTask file binaryContents))).
 		
 	self client post.
+]
+
+{ #category : #API }
+StudySubject >> bindLesson: aSubjectLesson to: aProgrammLesson [
+	| preparedEntity format path|
+	preparedEntity := ZnEntity
+			json: (STONJSON toString: (self prepareBind: aSubjectLesson to: aProgrammLesson)).
+	format := {self subjectGrade id.
+			self id}.
+	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons' format: format.
+	self client path: path; entity: preparedEntity; post.
+	^self client response.
 ]
 
 { #category : #'as yet unclassified' }
@@ -74,6 +87,17 @@ StudySubject >> connection [
 { #category : #accessing }
 StudySubject >> connection: anObject [
 	connection := anObject
+]
+
+{ #category : #API }
+StudySubject >> deleteLesson: aSubjectLesson [
+	| format path|
+	format := {self subjectGrade id.
+			self id.
+			aSubjectLesson id.}.
+	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}' format: format.
+	self client path: path; delete.
+	^self client response.
 ]
 
 { #category : #views }
@@ -145,6 +169,19 @@ StudySubject >> name [
 { #category : #accessing }
 StudySubject >> name: anObject [
 	name := anObject
+]
+
+{ #category : #utilities }
+StudySubject >> prepareBind: aSubjectLesson to: aProgrammLesson [ 
+^Dictionary new 
+		at: #date put: aSubjectLesson date;
+		at: #duration put: aProgrammLesson duration;
+		at: #type put: aProgrammLesson type;
+		at: #scheduleLessonId put: aSubjectLesson scheduleLessonId;
+		at: #plannedLessons put: (Dictionary new at: aProgrammLesson id asString 
+			put: aProgrammLesson duration; yourself);
+		yourself.
+		
 ]
 
 { #category : #'as yet unclassified' }

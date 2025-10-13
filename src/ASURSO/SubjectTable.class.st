@@ -15,6 +15,11 @@ Class {
 SubjectTable >> cleanTasks: aSubjectLeson [
 ]
 
+{ #category : #views }
+SubjectTable >> clearAllTasks [
+	self lessons do: [ :each | self studySubject removeTaskForLesson: each ]
+]
+
 { #category : #'as yet unclassified' }
 SubjectTable >> client [ 
 ^ connection client
@@ -36,35 +41,49 @@ SubjectTable >> gtLessonsFor: aView [
 	^ aView columnedList
 		title: 'Пары';
 		items: [ lessons ];
-		actionButtonLabel: 'Стереть все задания' action: [ :element |
-			self lessons do: [:each |  
-			self studySubject removeTaskForLesson: each].
-			element phlow fireViewUpdateWish
-		];
-		withMultipleSelection;
+		actionButtonLabel: 'Стереть все задания'
+			action: [ :element | 
+				self clearAllTasks.
+				element phlow fireViewUpdateWish ];
 		column: 'Дата'
 			text: #dateString
 			width: 100;
 		column: 'Название'
-			text: [:each | (each tasks size > 0) ifTrue: [each name asRopedText foreground: Color blue] ifFalse: [each name]]
+			text: [ :each | 
+				each tasks size > 0
+					ifTrue: [ each name asRopedText foreground: Color blue ]
+					ifFalse: [ each name ] ]
 			width: 440;
 		column: 'Задание' text: #taskString;
 		in: [ :view | 
+			(self workingProgramm lessons difference: self lessons)
+				do: [ :each | 
+					view
+						contextItemLabel: each name
+						action: [ :element :lesson | 
+							self studySubject bindLesson: lesson to: each.
+							element phlow fireViewUpdateWish ] ].
 			self connection tasks
 				do: [ :each | 
 					view
-					    contextItemLabel: 'Добавить ' , each name
-						action: [ :element :lesson  | 
-						view.
-						self studySubject
+						contextItemLabel: 'Добавить ' , each name
+						action: [ :element :lesson | 
+							view.
+							self studySubject
 								removeTaskForLesson: lesson;
-								addTask: each forLesson: lesson forUsers: self students.
-						element phlow fireViewUpdateWish
-						] ].
-			view contextItemLabel: 'Удалить задание' action: [ :element :lesson | 
-				self studySubject removeTaskForLesson: lesson.
-				element phlow fireViewUpdateWish
-			] ]
+								addTask: each
+									forLesson: lesson
+									forUsers: self students.
+							element phlow fireViewUpdateWish ] ].
+			view
+				contextItemLabel: 'Удалить занятие' action: [:element :lesson | 
+					self studySubject deleteLesson: lesson.
+					element phlow fireViewUpdateWish.
+				];
+				contextItemLabel: 'Удалить задание'
+				action: [ :element :lesson | 
+					self studySubject removeTaskForLesson: lesson.
+					element phlow fireViewUpdateWish ] ]
 ]
 
 { #category : #views }
