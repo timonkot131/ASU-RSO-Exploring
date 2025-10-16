@@ -11,6 +11,13 @@ Class {
 	#category : #'ASURSO-Model'
 }
 
+{ #category : #'as yet unclassified' }
+StudentGroup >> = anObject [
+^(anObject isKindOf: StudentGroup) ifTrue: [
+	anObject name = self name
+]
+]
+
 { #category : #accessing }
 StudentGroup >> activeJournal [
 	^ self journal detect: #isActive
@@ -104,6 +111,11 @@ StudentGroup >> gtViewFor: aView [
 		priority: 20;
 		object: [ self journal ];
 		view: #gtItemsFor:
+]
+
+{ #category : #comparing }
+StudentGroup >> hash [
+	^ self name hash hashMultiply
 ]
 
 { #category : #accessing }

@@ -139,7 +139,9 @@ SubjectLesson >> plannedLessons: anObject [
 { #category : #'as yet unclassified' }
 SubjectLesson >> printOn: aStream [ 
 aStream << self name.
+self date ifNotNil: [ 
 aStream << (' ', self dateString)
+]
 ]
 
 { #category : #accessing }

@@ -104,7 +104,7 @@ AsuConnection >> gtView1For: aView [
 		title: '4 ИСП';
 		priority: 11;
 		object: [ self groups
-				select: [ :x | (x name includesSubstring: 'ИСП') and: [ x yearNumber = 4 ] ] ];
+				select: [ :x | (x name includesSubstring: 'ИСП') and: [ x yearNumber = 4 ] ]];
 		view: #gtItemsFor:
 ]
 

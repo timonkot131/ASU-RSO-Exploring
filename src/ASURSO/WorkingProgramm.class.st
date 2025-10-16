@@ -27,11 +27,11 @@ WorkingProgramm >> gtProgrammTree: aView context: aContext [
 	^ aView columnedTree
 		expandUpTo: 1;
 		title: 'Наполнение';
-		items: [ self topics ];
+		items: [ self topics  ];
 		contextItemLabel: 'Скопировать' action: [ :element :item |
 			Clipboard clipboardText: item asString.
 		];
-		children: [ :each | each children ]
+		children: [ :each | each children  ]
 ]
 
 { #category : #accessing }
