@@ -10,9 +10,20 @@ Class {
 	#category : #'ASURSO-Model'
 }
 
+{ #category : #'as yet unclassified' }
+SubjectStudent >> = anObject [
+	(anObject isKindOf: SubjectStudent)
+		ifTrue: [ ^ self firstLast = anObject firstLast ]
+]
+
 { #category : #accessing }
 SubjectStudent >> contains: aString [
 	^ self fullName includesSubstring: aString
+]
+
+{ #category : #'as yet unclassified' }
+SubjectStudent >> firstLast [
+	^ self firstName , ' ' , self lastName
 ]
 
 { #category : #accessing }
@@ -31,6 +42,11 @@ SubjectStudent >> fullName [
 		format: {lastName.
 				firstName.
 				middleName}
+]
+
+{ #category : #comparing }
+SubjectStudent >> hash [
+	^ self firstLast hash hashMultiply
 ]
 
 { #category : #accessing }
