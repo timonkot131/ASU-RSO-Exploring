@@ -5,7 +5,8 @@ Class {
 		'name',
 		'file',
 		'id',
-		'type'
+		'type',
+		'attachments'
 	],
 	#category : #'ASURSO-Model'
 }
@@ -14,6 +15,16 @@ Class {
 SubjectTask >> = anObject [
 (anObject isKindOf: self class) ifFalse: [^false].
 ^ self name = anObject name
+]
+
+{ #category : #accessing }
+SubjectTask >> attachments [
+	^ attachments
+]
+
+{ #category : #accessing }
+SubjectTask >> attachments: anObject [
+	attachments := anObject
 ]
 
 { #category : #accessing }
@@ -58,6 +69,11 @@ SubjectTask >> name [
 { #category : #accessing }
 SubjectTask >> name: anObject [
 	name := anObject
+]
+
+{ #category : #'as yet unclassified' }
+SubjectTask >> printOn: aStream [
+aStream << name
 ]
 
 { #category : #accessing }

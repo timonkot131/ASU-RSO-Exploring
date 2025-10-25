@@ -74,6 +74,25 @@ SubjectLesson >> endTime: anObject [
 ]
 
 { #category : #views }
+SubjectLesson >> gtMarks: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Оценки';
+		items: [ self marks ];
+		column: 'Имя' text: #student;
+		column: 'Оценка' text: [ :each |
+		
+			{'Five' -> 5.
+			 'Four' -> 4.
+			 'Three' -> 3.
+			 'Two' -> 2.
+			 nil -> 'Не выставлено'	 
+			} asDictionary at: each grade
+		
+		].
+]
+
+{ #category : #views }
 SubjectLesson >> gtView1For: aView [
 	<gtView>
 	^ aView forward
@@ -114,6 +133,25 @@ SubjectLesson >> markSets [
 { #category : #accessing }
 SubjectLesson >> markSets: anObject [
 	markSets := anObject
+]
+
+{ #category : #'as yet unclassified' }
+SubjectLesson >> marks [
+	| students thisTasks |
+	students := self students groupedBy: #id.
+	thisTasks := self tasks groupedBy: #id.
+	^ self markSets associations
+		select: [ :kv | kv value includesKey: #marks ]
+		thenFlatCollect: [ :pair | 
+			| marks |
+			marks := (pair value at: #marks) associations.
+			marks collect: [ :each |
+			GradeExecution new 
+				student: (students at: pair key asInteger) first ;
+				task: (thisTasks at: each key asInteger) first;
+				grade: (each value at: #value ifAbsent: [nil])
+				] ] 
+			
 ]
 
 { #category : #'as yet unclassified' }

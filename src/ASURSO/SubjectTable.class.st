@@ -41,10 +41,7 @@ SubjectTable >> gtLessonsFor: aView [
 	^ aView columnedList
 		title: 'Пары';
 		items: [ lessons ];
-		actionButtonLabel: 'Стереть все задания'
-			action: [ :element | 
-				self clearAllTasks.
-				element phlow fireViewUpdateWish ];
+	
 		column: 'Дата'
 			text: #dateString
 			width: 100;
@@ -113,6 +110,11 @@ SubjectTable >> lessons [
 { #category : #accessing }
 SubjectTable >> lessons: anObject [
 	lessons := anObject
+]
+
+{ #category : #printing }
+SubjectTable >> printOn: aStream [
+self studySubject printOn: aStream.
 ]
 
 { #category : #accessing }
