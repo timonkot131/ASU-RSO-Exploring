@@ -22,6 +22,7 @@ AttendanceImportResult >> gtResultTree: aView [
 			each isOk ifTrue: [BrGlamorousIcons greencircle] ifFalse: [BrGlamorousIcons redcircle]
 		];
 		column: 'Группа' text: #group;
+		column: 'Дата' text: [:each | each lesson dateString];
 		column: 'Пара' text: #lesson;
 		column: 'Дисциплина' text: #subject.
 	

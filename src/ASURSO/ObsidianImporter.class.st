@@ -183,7 +183,7 @@ ObsidianImporter >> gtAttendanceView: aView context: aContext [
 		view: #gtTreeFor:context:; 
 		actionButtonLabel: 'Импортировать'
 			action: [ :element | 
-				element phlow spawnObject: (self importAttendence:  executions). ].
+				element phlow spawnObject: (self importAttendence:  self attendanceExecutions). ].
 ]
 
 { #category : #views }
@@ -201,7 +201,7 @@ ObsidianImporter >> gtGradeView: aView context: aContext [
 		view: #gtTreeFor:context:; 
 		actionButtonLabel: 'Импортировать'
 			action: [ :element | 
-				element phlow spawnObject: (self importGrades: executions). ].
+				element phlow spawnObject: (self importGrades: self gradeExecutions). ].
 ]
 
 { #category : #accessing }
@@ -243,8 +243,8 @@ ObsidianImporter >> importGrades: aDictionary [
 					| lesson task studentToGrade |
 					lesson := each key key.
 					task := each key value.
-					studentToGrade := (table students
-							collect: [ :student | GradeExecution new student: student ]) | each value.
+					studentToGrade := (each value) | (table students
+							collect: [ :student | GradeExecution new student: student ]) .
 					table studySubject
 						forLesson: lesson
 						task: task

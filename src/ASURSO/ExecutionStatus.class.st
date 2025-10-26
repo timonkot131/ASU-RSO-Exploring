@@ -53,6 +53,15 @@ ExecutionStatus >> gtDataFor: aView [
 		column: 'Value' text: [ :each | each gtDisplayString ]
 ]
 
+{ #category : #views }
+ExecutionStatus >> gtSubjectFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Subject пары';
+		object: [ subject ];
+		view: #gtPairsFor:
+]
+
 { #category : #testing }
 ExecutionStatus >> isOk [
 ^self response isSuccess
