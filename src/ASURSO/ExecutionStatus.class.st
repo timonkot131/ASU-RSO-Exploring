@@ -43,6 +43,16 @@ ExecutionStatus >> group: anObject [
 	group := anObject
 ]
 
+{ #category : #views }
+ExecutionStatus >> gtDataFor: aView [
+	<gtView>
+	data ifNil: [ ^ aView empty ].
+	^ aView columnedList
+		title: 'Data';
+		items: [ data ];
+		column: 'Value' text: [ :each | each gtDisplayString ]
+]
+
 { #category : #testing }
 ExecutionStatus >> isOk [
 ^self response isSuccess

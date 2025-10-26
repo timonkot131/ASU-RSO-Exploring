@@ -8,7 +8,8 @@ Class {
 		'importer',
 		'grade',
 		'task',
-		'required'
+		'required',
+		'absenceType'
 	],
 	#category : #'ASURSO-Model'
 }
@@ -27,10 +28,20 @@ GradeExecution class >> numToWord: anInteger [
 
 { #category : #'as yet unclassified' }
 GradeExecution >> = anObject [
-(self isKindOf: anObject) ifTrue: [ 
+(self isKindOf: self class) ifTrue: [ 
 	^self student = anObject student
 ].
 ^false.
+]
+
+{ #category : #accessing }
+GradeExecution >> absenceType [
+	^ absenceType
+]
+
+{ #category : #accessing }
+GradeExecution >> absenceType: anObject [
+	absenceType := anObject
 ]
 
 { #category : #accessing }
@@ -60,7 +71,8 @@ GradeExecution >> importer: anObject [
 
 { #category : #initialization }
 GradeExecution >> initialize [
-self required: true
+self required: true.
+self absenceType: AsuAbsenceReason isPresent.
 ]
 
 { #category : #accessing }
@@ -75,8 +87,8 @@ GradeExecution >> lesson: anObject [
 
 { #category : #'as yet unclassified' }
 GradeExecution >> printOn: aStream [
-(student printOn: aStream ).
-aStream << (' | ', grade asString)
+	student printOn: aStream.
+	aStream << (' | ' , (grade ifNotNil: [grade asString] ifNil: [ absenceType reason ifNil: ['Present'] ]) ). 
 ]
 
 { #category : #accessing }

@@ -10,9 +10,19 @@ Class {
 }
 
 { #category : #accessing }
-ObsidianImporter >> absenceExecutions [
+ObsidianImporter >> attendance [
+	^ (CSV2JSON for: attendance contents) json
+]
+
+{ #category : #accessing }
+ObsidianImporter >> attendance: aFileReference [
+	attendance := aFileReference
+]
+
+{ #category : #accessing }
+ObsidianImporter >> attendanceExecutions [
 	| groups result subjectKeys groupKeys mapped lessonKeys |
-	mapped := self grades collect: self gradeStencil.
+	mapped := (self attendance collect: self attendanceStencil).
 
 	groupKeys := mapped collect: #group at.
 	subjectKeys := mapped collect: #subject at.
@@ -35,32 +45,48 @@ ObsidianImporter >> absenceExecutions [
 									keys := raw collect: #student at.
 									students := keys & table students.
 									lesson
-										-> ((students
+										-> (students
 												collect: [ :student | 
-													| dict task |
+													| dict |
 													dict := raw detect: [ :each | (each at: #student) = student ].
-													task := ({(dict at: #task)} & lesson tasks) first.
 													GradeExecution new
 														importer: self;
 														subject: subject;
 														lesson: lesson;
 														student: student;
-														task: task;
-														grade: (dict at: #grade ifAbsent: [5])
-													 ]) groupedBy: #task)  ].
-						subject -> gradesAssoc asDictionary ].
+														absenceType: (dict at: #type).
+														
+																																						 ])  ].
+						table -> gradesAssoc asDictionary ].
 			group -> subjectTableAssoc asDictionary ].
-	^result asDictionary
+	^result asDictionary 
 ]
 
 { #category : #accessing }
-ObsidianImporter >> attendance [
-	^ (CSV2JSON for: attendance contents) json
+ObsidianImporter >> attendanceStencil [
+	^ [ :each | 
+	| firstLast |
+	firstLast := ' ' split: each student jsonObject.
+	Dictionary new
+		at: #subject put: (StudySubject new name: each subject jsonObject);
+		at: #type put: (self attendanceSwitch: each type jsonObject);
+		at: #lesson put: (SubjectLesson new name: each lesson jsonObject);
+		at: #group put: (StudentGroup new name: each group jsonObject);
+		at: #student
+			put: (SubjectStudent new
+					lastName: firstLast first;
+					firstName: firstLast second);
+		yourself ]
 ]
 
-{ #category : #accessing }
-ObsidianImporter >> attendance: aFileReference [
-	attendance := aFileReference
+{ #category : #'as yet unclassified' }
+ObsidianImporter >> attendanceSwitch: aString [
+^{
+	'Заболел' -> AsuAbsenceReason sickLeave.
+	'Отсутствует' -> AsuAbsenceReason noValidReason.
+	'Заявление' -> AsuAbsenceReason validReason.
+	'Опоздал' -> AsuAbsenceReason isLate 
+} asDictionary at: aString.
 ]
 
 { #category : #accessing }
@@ -145,6 +171,22 @@ ObsidianImporter >> grades: aFileReference [
 ]
 
 { #category : #views }
+ObsidianImporter >> gtAttendanceView: aView context: aContext [
+	<gtView>
+	| executions |
+	executions := self attendanceExecutions.
+	aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
+	^ aView forward 
+		priority: 6;
+		title: 'Новые посещения';
+		object: [ executions ];
+		view: #gtTreeFor:context:; 
+		actionButtonLabel: 'Импортировать'
+			action: [ :element | 
+				element phlow spawnObject: (self importAttendence:  executions). ].
+]
+
+{ #category : #views }
 ObsidianImporter >> gtGradeView: aView context: aContext [
 	"	^self gradeExecutions gtTreeFor: aView context"
 
@@ -153,12 +195,36 @@ ObsidianImporter >> gtGradeView: aView context: aContext [
 	executions := self gradeExecutions.
 	aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
 	^ aView forward
+		priority: 5;
 		title: 'Новые оценки';
 		object: [ executions ];
 		view: #gtTreeFor:context:; 
 		actionButtonLabel: 'Импортировать'
 			action: [ :element | 
-				element phlow spawnObject: (self importGrades: executions). ]
+				element phlow spawnObject: (self importGrades: executions). ].
+]
+
+{ #category : #accessing }
+ObsidianImporter >> importAttendence: aDictionary [
+	| tablesToTasks result terminatable |
+	tablesToTasks := aDictionary associations
+			flatCollect: [ :each | each value associations ].
+	terminatable := tablesToTasks asAsyncStream terminatable .
+	result := terminatable
+		flatCollect: [ :pair | 
+			| table lessons |
+			table := pair key.
+			lessons := pair value.
+			lessons associations asAsyncStream
+				collect: [ :each |  
+					| lesson  studentToGrade |
+					lesson := each key.
+					studentToGrade := (each value) | (table students
+							collect: [ :student | GradeExecution new student: student ]) .
+					table studySubject
+						forLesson: lesson
+						attendance: studentToGrade ] ].
+		^AttendanceImportResult new result: (result "on: Exception do: [:e | e]"); terminateBlock: [terminatable terminate]. 
 ]
 
 { #category : #accessing }
@@ -183,5 +249,5 @@ ObsidianImporter >> importGrades: aDictionary [
 						forLesson: lesson
 						task: task
 						grades: studentToGrade ] ].
-		^ImportResult new result: (result on: Exception do: [:e | e]); terminateBlock: [terminatable terminate]. 
+		^GradeImportResult new result: (result on: Exception do: [:e | e]); terminateBlock: [terminatable terminate]. 
 ]

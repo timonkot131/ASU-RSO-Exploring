@@ -1,15 +1,15 @@
 Class {
-	#name : #ImportResult,
+	#name : #AttendanceImportResult,
 	#superclass : #Object,
 	#instVars : [
 		'result',
 		'terminateBlock'
 	],
-	#category : #'ASURSO-Model'
+	#category : #'ASURSO-Reports'
 }
 
 { #category : #'as yet unclassified' }
-ImportResult >> gtResultTree: aView [
+AttendanceImportResult >> gtResultTree: aView [
 	<gtView>
 	| stream |
 	stream := self result.
@@ -21,7 +21,6 @@ ImportResult >> gtResultTree: aView [
 		column: 'Статус' icon: [:each | 
 			each isOk ifTrue: [BrGlamorousIcons greencircle] ifFalse: [BrGlamorousIcons redcircle]
 		];
-		column: 'Задание' text: #task;
 		column: 'Группа' text: #group;
 		column: 'Пара' text: #lesson;
 		column: 'Дисциплина' text: #subject.
@@ -29,21 +28,21 @@ ImportResult >> gtResultTree: aView [
 ]
 
 { #category : #accessing }
-ImportResult >> result [
+AttendanceImportResult >> result [
 	^ result
 ]
 
 { #category : #accessing }
-ImportResult >> result: anObject [
+AttendanceImportResult >> result: anObject [
 	result := anObject
 ]
 
 { #category : #accessing }
-ImportResult >> terminateBlock [
+AttendanceImportResult >> terminateBlock [
 	^ terminateBlock
 ]
 
 { #category : #accessing }
-ImportResult >> terminateBlock: anObject [
+AttendanceImportResult >> terminateBlock: anObject [
 	terminateBlock := anObject
 ]
