@@ -129,7 +129,10 @@ ObsidianImporter >> gradeExecutions [
 										(lesson -> task) -> (raw
 											collect: [ :each | 
 												| student grade |
-												student := ({each at: #student} & table students) first.
+												
+												[student := ({each at: #student} & table students) first.] on: Exception do: [:e |
+												(Error error: 'Такого студента нету в группе')].
+												
 												grade := GradeExecution numToWord: (each at: #grade ifAbsent: [ 5 ]).
 												GradeExecution new
 													importer: self; 
@@ -173,31 +176,26 @@ ObsidianImporter >> grades: aFileReference [
 { #category : #views }
 ObsidianImporter >> gtAttendanceView: aView context: aContext [
 	<gtView>
-	| executions |
-	executions := self attendanceExecutions.
-	aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
+		aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
 	^ aView forward 
 		priority: 6;
 		title: 'Новые посещения';
-		object: [ executions ];
+		object: [  self attendanceExecutions ];
 		view: #gtTreeFor:context:; 
 		actionButtonLabel: 'Импортировать'
 			action: [ :element | 
-				element phlow spawnObject: (self importAttendence:  self attendanceExecutions). ].
+				element phlow spawnObject: (self importAttendence: self attendanceExecutions). ].
 ]
 
 { #category : #views }
 ObsidianImporter >> gtGradeView: aView context: aContext [
 	"	^self gradeExecutions gtTreeFor: aView context"
-
 	<gtView>
-	| executions |
-	executions := self gradeExecutions.
 	aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
 	^ aView forward
-		priority: 5;
+		priority: 5; 
 		title: 'Новые оценки';
-		object: [ executions ];
+		object: [ self gradeExecutions ];
 		view: #gtTreeFor:context:; 
 		actionButtonLabel: 'Импортировать'
 			action: [ :element | 
