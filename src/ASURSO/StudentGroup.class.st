@@ -104,6 +104,15 @@ StudentGroup >> gtView3For: aView [
 ]
 
 { #category : #views }
+StudentGroup >> gtView4For: aView [
+	<gtView>
+	^ aView forward
+		title: 'Студенты';
+		object: [ self activeJournal scheduleSubjects first ];
+		view: #gtViewFor:
+]
+
+{ #category : #views }
 StudentGroup >> gtViewFor: aView [
 	<gtView>
 	^ aView forward

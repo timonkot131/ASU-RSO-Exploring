@@ -177,6 +177,15 @@ StudySubject >> forLesson: aSubjectLesson task: aSubjectTask grades: aCollection
 ]
 
 { #category : #views }
+StudySubject >> gtBadAttendance: aView [
+	<gtView>
+	^ aView forward
+		title: 'Прогульщики';
+		object: [ self subjectTable ];
+		view: #gtBadAttendance:
+]
+
+{ #category : #views }
 StudySubject >> gtPairsFor: aView [
 	<gtView>
 	^ aView forward
@@ -201,6 +210,15 @@ StudySubject >> gtSubjectTable: anAction [
 				aButton phlow showObject: self subjectTable ]
 			mouseCursor: BlCopyCursor new
 
+]
+
+{ #category : #views }
+StudySubject >> gtTeacherFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Преподаватель';
+		object: [ self subjectTable ];
+		view: #gtTeacherFor:
 ]
 
 { #category : #views }

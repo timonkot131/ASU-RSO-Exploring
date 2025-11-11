@@ -22,6 +22,7 @@ GradeExecution class >> numToWord: anInteger [
 		3 -> 'Three'.
 		4 -> 'Four'.
 		5 -> 'Five'.
+		'' -> 'Five'.
 	} asDictionary at: anInteger
 
 ]

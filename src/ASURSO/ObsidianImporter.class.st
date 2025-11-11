@@ -133,7 +133,7 @@ ObsidianImporter >> gradeExecutions [
 												[student := ({each at: #student} & table students) first.] on: Exception do: [:e |
 												(Error error: 'Такого студента нету в группе')].
 												
-												grade := GradeExecution numToWord: (each at: #grade ifAbsent: [ 5 ]).
+												grade := GradeExecution numToWord: (each at: #grade ifPresent: #asInteger ifAbsent: [ 5 ]).
 												GradeExecution new
 													importer: self; 
 													subject: subject;
@@ -153,6 +153,7 @@ ObsidianImporter >> gradeStencil [
 	| firstLast |
 	firstLast := ' ' split: each student jsonObject.
 	Dictionary new
+		at: #grade put: each grade jsonObject;
 		at: #task put: (SubjectTask new name: each task jsonObject);
 		at: #subject put: (StudySubject new name: each subject jsonObject);
 		at: #group put: (StudentGroup new name: each group jsonObject);

@@ -6,7 +6,8 @@ Class {
 		'students',
 		'studySubject',
 		'connection',
-		'workingProgram'
+		'workingProgram',
+		'teacher'
 	],
 	#category : #'ASURSO-Model'
 }
@@ -33,6 +34,23 @@ SubjectTable >> connection [
 { #category : #accessing }
 SubjectTable >> connection: anObject [
 	connection := anObject
+]
+
+{ #category : #views }
+SubjectTable >> gtBadAttendance: aView [
+	<gtView>
+	^ aView forward
+		title: 'Прогульщики';
+		object: [ (self students
+				collect: [ :student | 
+					student
+						-> (self lessons
+								count: [ :lesson | 
+									lesson absent
+										at: student
+										ifPresent: [ :value | value = AsuAbsenceReason noValidReason reason ]
+										ifAbsent: [ false ] ]) ]) sort: #value descending ];
+		view: #gtItemsFor:
 ]
 
 { #category : #views }
@@ -91,6 +109,15 @@ SubjectTable >> gtStudentsFor: aView [
 		title: 'Студенты';
 		object: [ students ];
 		view: #gtItemsFor:
+]
+
+{ #category : #views }
+SubjectTable >> gtTeacherFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Преподаватель';
+		object: [ teacher ];
+		view: #gtStringFor:
 ]
 
 { #category : #views }
