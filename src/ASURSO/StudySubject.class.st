@@ -74,6 +74,37 @@ StudySubject >> bindLesson: aSubjectLesson to: aProgrammLesson [
 	^self client response.
 ]
 
+{ #category : #API }
+StudySubject >> bindTotalGrades: anArrayOfTotalSubjectRow [
+	| preparedEntity format path |
+	preparedEntity := ZnEntity
+			json: (STONJSON
+					toString: (Dictionary new
+							in: [ :dic | 
+								anArrayOfTotalSubjectRow
+									do: [ :aRow | 
+										| grade |
+											(aRow average isZero or: [aRow average rounded = 2] ) ifFalse: [
+										grade := GradeExecution numToWord: aRow average rounded.
+									
+											dic
+												at: aRow id asString
+												put: (Dictionary new
+														at: #value put: grade;
+														yourself) 
+										]
+										].
+								dic ])).
+	format := {self subjectGrade id.
+			self id}.
+	path := '/services/journal/examination/{1}/subjects/{2}/marks' format: format.
+	self client
+		path: path;
+		entity: preparedEntity;
+		post.
+	^ self client response
+]
+
 { #category : #'as yet unclassified' }
 StudySubject >> client [ 
 ^ connection client
@@ -219,6 +250,20 @@ StudySubject >> gtTeacherFor: aView [
 		title: 'Преподаватель';
 		object: [ self subjectTable ];
 		view: #gtTeacherFor:
+]
+
+{ #category : #views }
+StudySubject >> gtTotalTable: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Итоговые оценки';
+		items: [ self totals ];
+		actionButtonLabel: 'Обновить оценки!'
+			action: [ :element | self bindTotalGrades: self totals.
+				element phlow fireViewUpdateWish ];
+		column: 'Студент' text: #fullName;
+		column: 'Средняя оценка' text: #average;
+		column: 'Итоговая оценка' text: #final.
 ]
 
 { #category : #views }
@@ -385,4 +430,35 @@ StudySubject >> subjectTable [
 	result workingProgramm connection: self connection.
 	result studySubject: self. 
 	^result connection: self connection.
+]
+
+{ #category : #API }
+StudySubject >> totals [
+	| format path contents res rows |
+	format := {self subjectGrade id.
+			self id}.
+	path := 'services/journal/examination/{1}/subjects/{2}' format: format.
+	self client
+		path: path;
+		get.
+	contents := self client response contents.
+	res := STONJSON fromString: contents.
+	rows := (res at: #students)
+			collect: [ :each | 
+				TotalSubjectRow new
+					firstName: (each at: #firstName);
+					lastName: (each at: #lastName);
+					middleName: (each at: #middleName);
+					id: (each at: #id) ].
+	^rows
+		do: [ :each | 
+			| marks |
+			each average: (((res at: #subgroups) last at: #marks) in:[ :aDict | aDict at: each id asString ifAbsent: [0]]).
+			marks := res at: #marks.
+			each
+				final: (marks
+						at: each id asString
+						ifPresent: [ :anItem | anItem at: #value ifPresent: [:aMark |
+							GradeExecution wordToNum: aMark] ifAbsent: ['.'] ]
+						ifAbsent: [ '.' ]) ]
 ]

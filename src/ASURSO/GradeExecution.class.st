@@ -27,6 +27,18 @@ GradeExecution class >> numToWord: anInteger [
 
 ]
 
+{ #category : #utility }
+GradeExecution class >> wordToNum: aString [
+	^{
+		1 -> 'One'.
+		2 -> 'Two'.
+		3 -> 'Three'.
+		4 -> 'Four'.
+		5 -> 'Five'.
+	} asDictionary keyAtValue: aString
+
+]
+
 { #category : #'as yet unclassified' }
 GradeExecution >> = anObject [
 (self isKindOf: self class) ifTrue: [ 
