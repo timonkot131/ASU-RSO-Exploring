@@ -1,18 +1,20 @@
 Class {
-	#name : #BaselineOfASURSO,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfASURSO
+	#name : 'BaselineOfASURSO',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfASURSO',
+	#package : 'BaselineOfASURSO'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 BaselineOfASURSO >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
-			spec package: 'ASURSO'
+			spec baseline: 'NeoJSON' with: [ spec repository: 'github://svenvc/NeoJSON/repository' ].
+			spec package: 'ASURSO'.
 		]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 BaselineOfASURSO >> loadLepiter [
 	IceRepository registry  
 		detect: [ :aRepository |
