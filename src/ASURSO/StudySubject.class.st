@@ -1,6 +1,6 @@
 Class {
-	#name : #StudySubject,
-	#superclass : #Object,
+	#name : 'StudySubject',
+	#superclass : 'Object',
 	#instVars : [
 		'connection',
 		'plannedHours',
@@ -10,16 +10,18 @@ Class {
 		'isAttendanceEditable',
 		'subjectGrade'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> = anObject [
 ^(anObject isKindOf: StudySubject) ifTrue:
  [self name = anObject name]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 StudySubject >> absentEntityOf: anAsuAbsenceReason [ 
 ^ Dictionary new
 	at: #absenceReason put: nil;
@@ -29,7 +31,7 @@ StudySubject >> absentEntityOf: anAsuAbsenceReason [
 	
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArrayOfSubjectUser [
 	| format path requiredMarks |
 	format := {self subjectGrade id.
@@ -62,7 +64,7 @@ StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArra
 	self client post.
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> bindLesson: aSubjectLesson to: aProgrammLesson [
 	| preparedEntity format path|
 	preparedEntity := ZnEntity
@@ -74,7 +76,7 @@ StudySubject >> bindLesson: aSubjectLesson to: aProgrammLesson [
 	^self client response.
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> bindTotalGrades: anArrayOfTotalSubjectRow [
 	| preparedEntity format path |
 	preparedEntity := ZnEntity
@@ -105,22 +107,22 @@ StudySubject >> bindTotalGrades: anArrayOfTotalSubjectRow [
 	^ self client response
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> client [ 
 ^ connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> deleteLesson: aSubjectLesson [
 	| format path|
 	format := {self subjectGrade id.
@@ -131,7 +133,7 @@ StudySubject >> deleteLesson: aSubjectLesson [
 	^self client response.
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> forLesson: aSubjectLesson attendance: aCollection [
 	| format path requiredMarks |
 	format := {self subjectGrade id.
@@ -166,7 +168,7 @@ StudySubject >> forLesson: aSubjectLesson attendance: aCollection [
 		group: self subjectGrade studentGroup
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> forLesson: aSubjectLesson task: aSubjectTask grades: aCollectionOfGradeExecution [
 	| format path requiredMarks attachments |
 	format := {self subjectGrade id.
@@ -207,7 +209,7 @@ StudySubject >> forLesson: aSubjectLesson task: aSubjectTask grades: aCollection
 		group: self subjectGrade studentGroup.
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtBadAttendance: aView [
 	<gtView>
 	^ aView forward
@@ -216,7 +218,7 @@ StudySubject >> gtBadAttendance: aView [
 		view: #gtBadAttendance:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtPairsFor: aView [
 	<gtView>
 	^ aView forward
@@ -227,7 +229,7 @@ StudySubject >> gtPairsFor: aView [
 		view: #gtLessonsFor: 
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtPerfomance: aView context: aContext [
 	<gtView>
 	aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
@@ -255,7 +257,7 @@ StudySubject >> gtPerfomance: aView context: aContext [
 		view: #gtTreeFor:
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> gtSubjectTable: anAction [
 <gtAction>
 	^ anAction button
@@ -271,7 +273,7 @@ StudySubject >> gtSubjectTable: anAction [
 
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtTeacherFor: aView [
 	<gtView>
 	^ aView forward
@@ -280,7 +282,7 @@ StudySubject >> gtTeacherFor: aView [
 		view: #gtTeacherFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtTotalTable: aView [
 	<gtView>
 	^ aView columnedList
@@ -294,7 +296,7 @@ StudySubject >> gtTotalTable: aView [
 		column: 'Итоговая оценка' text: #final.
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtView2For: aView [
 	<gtView>
 	^ aView forward
@@ -303,7 +305,7 @@ StudySubject >> gtView2For: aView [
 		view: #gtWorkingProgramFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudySubject >> gtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -313,32 +315,32 @@ StudySubject >> gtViewFor: aView [
 		view: #gtStudentsFor:
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StudySubject >> hash [
 	^ self name hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 StudySubject >> prepareBind: aSubjectLesson to: aProgrammLesson [ 
 ^Dictionary new 
 		at: #date put: aSubjectLesson date;
@@ -351,12 +353,12 @@ StudySubject >> prepareBind: aSubjectLesson to: aProgrammLesson [
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> printOn: aStream [
 aStream << name
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> removeTaskForLesson: aSubjectLesson [
 	^aSubjectLesson tasks
 		collect: [ :each | 
@@ -372,7 +374,7 @@ StudySubject >> removeTaskForLesson: aSubjectLesson [
 				delete. ]
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> setAbsenceLesson: aSubjectLesson student: aSubjectUser type: anAsuAbsenceReason [
 	| format path |
 	format := {self subjectGrade id.
@@ -387,22 +389,22 @@ StudySubject >> setAbsenceLesson: aSubjectLesson student: aSubjectUser type: anA
 	^self client response
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> subjectGrade [
 	^ subjectGrade
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudySubject >> subjectGrade: anObject [
 	subjectGrade := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> subjectGroup [ 
 	^ subjectGrade studentGroup
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudySubject >> subjectTable [
 	| result lessons |
 	self client path: ('/services/journal/gradebook/{1}/subjects/{2}' format: {self subjectGrade id. self id}).
@@ -460,7 +462,7 @@ StudySubject >> subjectTable [
 	^result connection: self connection.
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 StudySubject >> totals [
 	| format path contents res rows |
 	format := {self subjectGrade id.

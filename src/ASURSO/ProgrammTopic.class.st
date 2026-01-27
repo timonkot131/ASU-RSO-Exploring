@@ -1,21 +1,23 @@
 Class {
-	#name : #ProgrammTopic,
-	#superclass : #Object,
+	#name : 'ProgrammTopic',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'sectionIndex',
 		'index',
 		'lessons'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammTopic >> children [ 
 	^self lessons
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 ProgrammTopic >> gtLessonsFor: aView [
 	<gtView>
 	lessons ifNil: [ ^ aView empty ].
@@ -25,51 +27,51 @@ ProgrammTopic >> gtLessonsFor: aView [
 		column: 'Value' text: [ :each | each gtDisplayString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> index [
 	^ index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> index: anObject [
 	index := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammTopic >> isCollection [ ^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> lessons [
 	^ lessons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> lessons: anObject [
 	lessons := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammTopic >> printOn: aStream [
 aStream << ('{1}.{2}: {3}' format: {self sectionIndex. self index. self name})
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> sectionIndex [
 	^ sectionIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammTopic >> sectionIndex: anObject [
 	sectionIndex := anObject
 ]

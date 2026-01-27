@@ -1,6 +1,6 @@
 Class {
-	#name : #SubjectTask,
-	#superclass : #Object,
+	#name : 'SubjectTask',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'file',
@@ -8,36 +8,38 @@ Class {
 		'type',
 		'attachments'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectTask >> = anObject [
 (anObject isKindOf: self class) ifFalse: [^false].
 ^ self name = anObject name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> attachments [
 	^ attachments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> attachments: anObject [
 	attachments := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTask >> gtPathFor: aView [
 	<gtView>
 	^ aView forward
@@ -46,42 +48,42 @@ SubjectTask >> gtPathFor: aView [
 		view: #gtPathFor:
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SubjectTask >> hash [
 	^ self name hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectTask >> printOn: aStream [
 aStream << name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> type [
 	^ type ifNil: ['PracticalWork']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTask >> type: anObject [
 	type := anObject
 ]

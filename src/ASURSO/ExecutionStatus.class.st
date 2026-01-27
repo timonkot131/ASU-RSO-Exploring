@@ -1,6 +1,6 @@
 Class {
-	#name : #ExecutionStatus,
-	#superclass : #Object,
+	#name : 'ExecutionStatus',
+	#superclass : 'Object',
 	#instVars : [
 		'response',
 		'group',
@@ -10,40 +10,42 @@ Class {
 		'task',
 		'data'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> client [ 
 	^ client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> client: anObject [ 
 	client := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> data [
 	^ data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> data: anObject [
 	data := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> group [
 	^ group
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> group: anObject [
 	group := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 ExecutionStatus >> gtDataFor: aView [
 	<gtView>
 	data ifNil: [ ^ aView empty ].
@@ -53,7 +55,7 @@ ExecutionStatus >> gtDataFor: aView [
 		column: 'Value' text: [ :each | each gtDisplayString ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 ExecutionStatus >> gtSubjectFor: aView [
 	<gtView>
 	^ aView forward
@@ -62,47 +64,47 @@ ExecutionStatus >> gtSubjectFor: aView [
 		view: #gtPairsFor:
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ExecutionStatus >> isOk [
 ^self response isSuccess
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> lesson [
 	^ lesson
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> lesson: anObject [
 	lesson := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> response [
 	^ response
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> response: anObject [
 	response := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> subject [
 	^ subject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> subject: anObject [
 	subject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> task [
 	^ task
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExecutionStatus >> task: anObject [
 	task := anObject
 ]

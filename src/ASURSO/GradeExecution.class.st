@@ -1,6 +1,6 @@
 Class {
-	#name : #GradeExecution,
-	#superclass : #Object,
+	#name : 'GradeExecution',
+	#superclass : 'Object',
 	#instVars : [
 		'subject',
 		'lesson',
@@ -11,10 +11,12 @@ Class {
 		'required',
 		'absenceType'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #utility }
+{ #category : 'utility' }
 GradeExecution class >> numToWord: anInteger [
 	^{
 		1 -> 'One'.
@@ -27,7 +29,7 @@ GradeExecution class >> numToWord: anInteger [
 
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 GradeExecution class >> wordToNum: aString [
 	^{
 		1 -> 'One'.
@@ -39,7 +41,7 @@ GradeExecution class >> wordToNum: aString [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GradeExecution >> = anObject [
 (self isKindOf: self class) ifTrue: [ 
 	^self student = anObject student
@@ -47,99 +49,99 @@ GradeExecution >> = anObject [
 ^false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> absenceType [
 	^ absenceType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> absenceType: anObject [
 	absenceType := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> grade [
 	^ grade
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> grade: anObject [
 	grade := anObject
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 GradeExecution >> hash [
 	^ self student hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> importer [
 	^ importer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> importer: anObject [
 	importer := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GradeExecution >> initialize [
 self required: true.
 self absenceType: AsuAbsenceReason isPresent.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> lesson [
 	^ lesson
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> lesson: anObject [
 	lesson := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GradeExecution >> printOn: aStream [
 	student printOn: aStream.
 	aStream << (' | ' , (grade ifNotNil: [grade asString] ifNil: [ absenceType reason ifNil: ['Present'] ]) ). 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> required [
 	^ required
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> required: anObject [
 	required := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> student [
 	^ student
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> student: anObject [
 	student := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> subject [
 	^ subject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> subject: anObject [
 	subject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> task [
 	^ task
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeExecution >> task: anObject [
 	task := anObject
 ]

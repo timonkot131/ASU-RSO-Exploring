@@ -1,6 +1,6 @@
 Class {
-	#name : #ThematicPlan,
-	#superclass : #Object,
+	#name : 'ThematicPlan',
+	#superclass : 'Object',
 	#instVars : [
 		'id',
 		'editable',
@@ -9,10 +9,12 @@ Class {
 		'sections',
 		'connection'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> asWorkingProgramm [
 	^ WorkingProgramm new
 		connection: self connection;
@@ -20,32 +22,32 @@ ThematicPlan >> asWorkingProgramm [
 		topics: self topics
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ThematicPlan >> client [
 ^ self connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> editable [
 	^ editable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> editable: anObject [
 	editable := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ThematicPlan >> gtProgrammTree: aView context: aContext [
 	<gtView>
 	^ aView columnedTree
@@ -55,57 +57,57 @@ ThematicPlan >> gtProgrammTree: aView context: aContext [
 		children: [ :each | each children ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> isApproved [
 	^ isApproved
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> isApproved: anObject [
 	isApproved := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ThematicPlan >> lessons [
 	^self topics flatCollect: #lessons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ThematicPlan >> printOn: aStream [
 aStream << name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> sections [
 	^sections.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> sections: anObject [
 	sections := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThematicPlan >> topics [
 	| indexed |
 	indexed := self sections

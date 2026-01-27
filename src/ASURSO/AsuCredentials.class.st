@@ -1,15 +1,17 @@
 Class {
-	#name : #AsuCredentials,
-	#superclass : #Object,
+	#name : 'AsuCredentials',
+	#superclass : 'Object',
 	#instVars : [
 		'isRemember',
 		'password',
 		'login'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> _ [
 	^ ZnClient new
 		url: 'https://spo.asurso.ru/services/security/login';
@@ -17,7 +19,7 @@ AsuCredentials >> _ [
 		post
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> asJson [
 	^ String
 		streamContents: [ :stream | 
@@ -27,38 +29,38 @@ AsuCredentials >> asJson [
 				nextPut: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> asuConnection [
 	^(AsuConnection
 		withCredentials: self) connect
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> isRemember [
 	^ isRemember
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> isRemember: anObject [
 	isRemember := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> login [
 	^ login
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> login: anObject [
 	login := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> password [
 	^ password
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuCredentials >> password: anObject [
 	password := anObject
 ]

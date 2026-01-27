@@ -1,6 +1,6 @@
 Class {
-	#name : #StudentGroup,
-	#superclass : #Object,
+	#name : 'StudentGroup',
+	#superclass : 'Object',
 	#instVars : [
 		'code',
 		'yearNumber',
@@ -8,47 +8,49 @@ Class {
 		'id',
 		'connection'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudentGroup >> = anObject [
 ^(anObject isKindOf: StudentGroup) ifTrue: [
 	anObject name = self name
 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> activeJournal [
 	^ self journal detect: #isActive
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> client [
 	^ connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> code [
 	^ code
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> code: anObject [
 	code := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudentGroup >> courses [
 	| items |
 	self client path: ('/services/journal/gradebook/{1}/entries' format: {self id}).
@@ -70,7 +72,7 @@ StudentGroup >> courses [
 	^items
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGroup >> gtView1For: aView [
 	<gtView>
 	^ aView forward
@@ -80,7 +82,7 @@ StudentGroup >> gtView1For: aView [
 		view: #gtScheduleSubjectsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGroup >> gtView2For: aView [
 	<gtView>
 	^ aView forward
@@ -92,7 +94,7 @@ StudentGroup >> gtView2For: aView [
 		view: #gtPairsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGroup >> gtView3For: aView [
 	<gtView>
 	^ aView forward
@@ -103,7 +105,7 @@ StudentGroup >> gtView3For: aView [
 		view: #gtPairsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGroup >> gtView4For: aView [
 	<gtView>
 	^ aView forward
@@ -112,7 +114,7 @@ StudentGroup >> gtView4For: aView [
 		view: #gtViewFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGroup >> gtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -122,22 +124,22 @@ StudentGroup >> gtViewFor: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StudentGroup >> hash [
 	^ self name hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudentGroup >> journal [
 	| items |
 	self client path: ('/services/journal/gradebook/{1}/entries' format: {self id}).
@@ -161,17 +163,17 @@ StudentGroup >> journal [
 	^items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> printOn: aStream [
 	^ aStream
 		<< ('Название: {1}, ID: {2}'
@@ -179,12 +181,12 @@ StudentGroup >> printOn: aStream [
 						id})
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> yearNumber [
 	^ yearNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGroup >> yearNumber: anObject [
 	yearNumber := anObject
 ]

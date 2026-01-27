@@ -1,6 +1,6 @@
 Class {
-	#name : #SubjectLesson,
-	#superclass : #Object,
+	#name : 'SubjectLesson',
+	#superclass : 'Object',
 	#instVars : [
 		'id',
 		'date',
@@ -17,15 +17,17 @@ Class {
 		'workingProgramm',
 		'subjectTable'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> = anObject [
 ^((anObject isKindOf: ProgrammLesson) or: [ anObject isKindOf: SubjectLesson]) ifTrue: [ self name = anObject name ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> absent [
 	^(self markSets associations select: [:kv | kv value includesKey: #absenceType]
 		thenCollect: [ :kv | 
@@ -33,47 +35,47 @@ SubjectLesson >> absent [
 				-> (kv value at: 'absenceType') ]) asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> children [ ^self markSets  "ifNil: [(Dictionary new at: 'noway' put: 'ok'; yourself) associations]"
 ifNil: [{}]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> date [
 	^ date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> date: anObject [
 	date := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> dateString [
 	^ self date asDate yyyymmdd
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> duration [
 	^ duration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> duration: anObject [
 	duration := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> endTime [
 	^ endTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> endTime: anObject [
 	endTime := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectLesson >> gtMarks: aView [
 	<gtView>
 	^ aView columnedList
@@ -92,7 +94,7 @@ SubjectLesson >> gtMarks: aView [
 		].
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectLesson >> gtView1For: aView [
 	<gtView>
 	^ aView forward
@@ -101,7 +103,7 @@ SubjectLesson >> gtView1For: aView [
 		view: #gtKeysFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectLesson >> gtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -110,32 +112,32 @@ SubjectLesson >> gtViewFor: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SubjectLesson >> hash [
 	^ self name hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> markSets [
 	^ markSets
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> markSets: anObject [
 	markSets := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> marks [
 	| students thisTasks |
 	students := self students groupedBy: #id.
@@ -154,27 +156,27 @@ SubjectLesson >> marks [
 			
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> name [ 
 ^name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> plannedLessons [
 	^ plannedLessons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> plannedLessons: anObject [
 	plannedLessons := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> printOn: aStream [ 
 aStream << self name.
 self date ifNotNil: [ 
@@ -182,77 +184,77 @@ aStream << (' ', self dateString)
 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> scheduleLessonId [
 	^ scheduleLessonId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> scheduleLessonId: anObject [
 	scheduleLessonId := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> startTime [
 	^ startTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> startTime: anObject [
 	startTime := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> students [
 ^ self subjectTable students
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> studySubject: aStudySubject [ 
 	studySubject := aStudySubject.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> subjectTable [
 	^ subjectTable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> subjectTable: anObject [
 	subjectTable := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> taskString [
 	^ ', ' join: (self tasks collect: #name)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> tasks [
 	^ tasks
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> tasks: anObject [
 	tasks := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> type [
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> type: anObject [
 	type := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectLesson >> workingProgramm [
 ^ workingProgramm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectLesson >> workingProgramm: anObject [
 	workingProgramm := anObject
 ]

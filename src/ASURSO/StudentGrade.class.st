@@ -1,6 +1,6 @@
 Class {
-	#name : #StudentGrade,
-	#superclass : #Object,
+	#name : 'StudentGrade',
+	#superclass : 'Object',
 	#instVars : [
 		'client',
 		'id',
@@ -15,35 +15,37 @@ Class {
 		'endDate',
 		'studentGroup'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> client [
 	^ connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> endDate [
 	^ endDate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> endDate: anObject [
 	endDate := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 StudentGrade >> gtScheduleSubjectsFor: aView [
 	<gtView>
 	scheduleSubjects ifNil: [ ^ aView empty ].
@@ -53,97 +55,97 @@ StudentGrade >> gtScheduleSubjectsFor: aView [
 		column: 'Value' text: [ :each | each gtDisplayString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> isActive [
 	^ isActive
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> isActive: anObject [
 	isActive := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StudentGrade >> printOn: aStream [
 aStream << name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> scheduleSubjects [
 	^ scheduleSubjects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> scheduleSubjects: anObject [
 	scheduleSubjects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> startDate [
 	^ startDate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> startDate: anObject [
 	startDate := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> studentGroup [
 	^ studentGroup
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> studentGroup: anObject [
 	studentGroup := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> termNumber [
 	^ termNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> termNumber: anObject [
 	termNumber := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> termType [
 	^ termType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> termType: anObject [
 	termType := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> yearNumber [
 	^ yearNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StudentGrade >> yearNumber: anObject [
 	yearNumber := anObject
 ]

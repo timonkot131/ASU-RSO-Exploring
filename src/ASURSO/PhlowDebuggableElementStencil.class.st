@@ -1,14 +1,16 @@
 Class {
-	#name : #PhlowDebuggableElementStencil,
-	#superclass : #BrDebuggableElementStencil,
+	#name : 'PhlowDebuggableElementStencil',
+	#superclass : 'BrDebuggableElementStencil',
 	#instVars : [
 		'view',
 		'object'
 	],
-	#category : #'ASURSO-Exceptions'
+	#category : 'ASURSO-Exceptions',
+	#package : 'ASURSO',
+	#tag : 'Exceptions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PhlowDebuggableElementStencil >> create [
 	<return: #BlElement>
 	| aLabel aButton aContainer |
@@ -30,22 +32,22 @@ PhlowDebuggableElementStencil >> create [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PhlowDebuggableElementStencil >> object [
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PhlowDebuggableElementStencil >> object: anObject [
 	object := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PhlowDebuggableElementStencil >> view [
 	^ view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PhlowDebuggableElementStencil >> view: anObject [
 	view := anObject
 ]
