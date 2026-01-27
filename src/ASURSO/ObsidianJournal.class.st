@@ -5,7 +5,9 @@ Class {
 		'source',
 		'items',
 		'element',
-		'replica'
+		'replica',
+		'title',
+		'sourced'
 	],
 	#category : 'ASURSO-Model',
 	#package : 'ASURSO',
@@ -28,6 +30,8 @@ ObsidianJournal >> gtViewFor: aView [
 	^ aView forward
 		title: 'Live';
 		object: [ self element ];
+		actionButtonIcon: BrGlamorousVectorIcons savetodisk 
+			 action: [self replica export: (((self items | self sourced) select: #isForExport thenCollect: #data) ) source: self source];
 		view: #gtLiveFor:
 ]
 
@@ -39,6 +43,16 @@ ObsidianJournal >> items [
 { #category : 'accessing' }
 ObsidianJournal >> items: anObject [
 	items := anObject
+]
+
+{ #category : 'as yet unclassified' }
+ObsidianJournal >> printOn: aStream [
+aStream << self title
+]
+
+{ #category : 'as yet unclassified' }
+ObsidianJournal >> printString [
+^self title
 ]
 
 { #category : 'accessing' }
@@ -59,4 +73,24 @@ ObsidianJournal >> source [
 { #category : 'accessing' }
 ObsidianJournal >> source: anObject [
 	source := anObject
+]
+
+{ #category : 'accessing' }
+ObsidianJournal >> sourced [
+	^ sourced
+]
+
+{ #category : 'accessing' }
+ObsidianJournal >> sourced: anObject [
+	sourced := anObject
+]
+
+{ #category : 'accessing' }
+ObsidianJournal >> title [
+	^ title
+]
+
+{ #category : 'accessing' }
+ObsidianJournal >> title: anObject [
+	title := anObject
 ]
