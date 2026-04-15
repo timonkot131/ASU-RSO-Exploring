@@ -81,7 +81,7 @@ ObsidianImporter >> attendanceStencil [
 		yourself ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'helpers' }
 ObsidianImporter >> attendanceSwitch: aString [
 ^{
 	'Заболел' -> AsuAbsenceReason sickLeave.
