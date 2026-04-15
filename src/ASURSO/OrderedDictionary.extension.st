@@ -15,7 +15,7 @@ OrderedDictionary >> lookupThree: aView [
 		column: 'Key' text: #key;
 		column: 'Value' text: #value weight: 3;
 		contextItemLabel: 'Inspect key' action: [ :anElement :assoc | anElement phlow spawnObject: assoc value key ];
-			contextItemLabel: 'Тройбаны' action: [ :anElement :assoc | anElement phlow spawnObject: (assoc value collect: [:x | x subject forLesson: x lesson task: x task grades: {x} | ({x lesson} & x lessons) first marks  ]  ) ];
+			contextItemLabel: 'Тройбаны' action: [ :anElement :assoc | anElement phlow spawnObject: (GradeImportResult new result: (assoc value asAsyncStream collect: [:x | x subject forLesson: x lesson task: x task grades: {x} | ({x lesson} & x subject subjectTable lessons) first marks  ]  )) ];
 		contextItemLabel: 'Inspect association' action: [ :anElement :assoc | anElement phlow spawnObject: assoc value ];
 		send: #value
 ]
