@@ -1,25 +1,27 @@
 Class {
-	#name : #ObsidianImporter,
-	#superclass : #Object,
+	#name : 'ObsidianImporter',
+	#superclass : 'Object',
 	#instVars : [
 		'connection',
 		'attendance',
 		'grades'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> attendance [
 	^ (CSV2JSON for: attendance contents) json
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> attendance: aFileReference [
 	attendance := aFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> attendanceExecutions [
 	| groups result subjectKeys groupKeys mapped lessonKeys |
 	mapped := (self attendance collect: self attendanceStencil).
@@ -62,7 +64,7 @@ ObsidianImporter >> attendanceExecutions [
 	^result asDictionary 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> attendanceStencil [
 	^ [ :each | 
 	| firstLast |
@@ -79,7 +81,7 @@ ObsidianImporter >> attendanceStencil [
 		yourself ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ObsidianImporter >> attendanceSwitch: aString [
 ^{
 	'Заболел' -> AsuAbsenceReason sickLeave.
@@ -89,17 +91,17 @@ ObsidianImporter >> attendanceSwitch: aString [
 } asDictionary at: aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> gradeExecutions [
 	| groups result subjectKeys groupKeys mapped taskKeys |
 	mapped := self grades collect: self gradeStencil.
@@ -147,7 +149,7 @@ ObsidianImporter >> gradeExecutions [
 	^ result asDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> gradeStencil [
 	^ [ :each | 
 	| firstLast |
@@ -164,17 +166,17 @@ ObsidianImporter >> gradeStencil [
 		yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> grades [
 	^ (CSV2JSON for: grades contents) json
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> grades: aFileReference [
 	grades := aFileReference
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 ObsidianImporter >> gtAttendanceView: aView context: aContext [
 	<gtView>
 		aContext at: #gtTreeExpansionLevel ifAbsentPut: [ true ].
@@ -188,7 +190,7 @@ ObsidianImporter >> gtAttendanceView: aView context: aContext [
 				element phlow spawnObject: (self importAttendence: self attendanceExecutions). ].
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 ObsidianImporter >> gtGradeView: aView context: aContext [
 	"	^self gradeExecutions gtTreeFor: aView context"
 	<gtView>
@@ -203,7 +205,7 @@ ObsidianImporter >> gtGradeView: aView context: aContext [
 				element phlow spawnObject: (self importGrades: self gradeExecutions). ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> importAttendence: aDictionary [
 	| tablesToTasks result terminatable |
 	tablesToTasks := aDictionary associations
@@ -226,7 +228,7 @@ ObsidianImporter >> importAttendence: aDictionary [
 		^AttendanceImportResult new result: (result "on: Exception do: [:e | e]"); terminateBlock: [terminatable terminate]. 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObsidianImporter >> importGrades: aDictionary [
 	| tablesToTasks result terminatable |
 	tablesToTasks := aDictionary associations

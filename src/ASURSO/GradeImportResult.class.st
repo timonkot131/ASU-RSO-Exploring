@@ -1,14 +1,16 @@
 Class {
-	#name : #GradeImportResult,
-	#superclass : #Object,
+	#name : 'GradeImportResult',
+	#superclass : 'Object',
 	#instVars : [
 		'result',
 		'terminateBlock'
 	],
-	#category : #'ASURSO-Reports'
+	#category : 'ASURSO-Reports',
+	#package : 'ASURSO',
+	#tag : 'Reports'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GradeImportResult >> gtResultTree: aView [
 	<gtView>
 	| stream |
@@ -28,22 +30,22 @@ GradeImportResult >> gtResultTree: aView [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeImportResult >> result [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeImportResult >> result: anObject [
 	result := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeImportResult >> terminateBlock [
 	^ terminateBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GradeImportResult >> terminateBlock: anObject [
 	terminateBlock := anObject
 ]

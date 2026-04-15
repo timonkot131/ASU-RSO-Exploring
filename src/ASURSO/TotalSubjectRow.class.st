@@ -1,6 +1,6 @@
 Class {
-	#name : #TotalSubjectRow,
-	#superclass : #Object,
+	#name : 'TotalSubjectRow',
+	#superclass : 'Object',
 	#instVars : [
 		'firstName',
 		'lastName',
@@ -9,56 +9,58 @@ Class {
 		'average',
 		'final'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TotalSubjectRow >> = anObject [
 	(anObject isKindOf: SubjectStudent)
 		ifTrue: [ ^ self firstLast = anObject firstLast ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> average [
 	^ average
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> average: anObject [
 	average := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> contains: aString [
 	^ self fullName includesSubstring: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> final [
 	^ final
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> final: anObject [
 	final := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TotalSubjectRow >> firstLast [
 	^ self firstName , ' ' , self lastName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> firstName [
 	^ firstName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> firstName: anObject [
 	firstName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> fullName [
 	^ '{1} {2} {3}'
 		format: {lastName.
@@ -66,42 +68,42 @@ TotalSubjectRow >> fullName [
 				middleName}
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 TotalSubjectRow >> hash [
 	^ self firstLast hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> lastName [
 	^ lastName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> lastName: anObject [
 	lastName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> middleName [
 	^ middleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TotalSubjectRow >> middleName: anObject [
 	middleName := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TotalSubjectRow >> printOn: aStream [ 
 aStream << ('{1} {2}' format: {self lastName. self firstName})
 ]

@@ -1,16 +1,18 @@
 Class {
-	#name : #AsuConnection,
-	#superclass : #Object,
+	#name : 'AsuConnection',
+	#superclass : 'Object',
 	#instVars : [
 		'credentials',
 		'data',
 		'client',
 		'tasks'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AsuConnection class >> cultureCookie [
 	^ ZnCookie new
 		name: '.AspNetCore.Culture';
@@ -19,12 +21,12 @@ AsuConnection class >> cultureCookie [
 		path: '/'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AsuConnection class >> host [
 	^ 'spo.asurso.ru'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection class >> withCredentials: anAsuCredentials [
 	| client | 
 	client := ZnClient new https
@@ -38,17 +40,17 @@ AsuConnection class >> withCredentials: anAsuCredentials [
 		client: client
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AsuConnection >> client [
 ^client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> client: anObject [
 	client := anObject 
 ]
 
-{ #category : #connection }
+{ #category : 'connection' }
 AsuConnection >> connect [
 	client 
 		path: '/services/security/login';
@@ -56,17 +58,17 @@ AsuConnection >> connect [
 	client post.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> credentials: anObject [ 
 	credentials := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> data: response [ 
 	data := response
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> groups [
 	|items|
 	client
@@ -79,7 +81,7 @@ AsuConnection >> groups [
 	^items collect: [:x | x connection: self].
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 AsuConnection >> gtClientFor: aView [
 	<gtView>
 	^ aView forward
@@ -88,7 +90,7 @@ AsuConnection >> gtClientFor: aView [
 		view: #gtSessionFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 AsuConnection >> gtIsp3View: aView [
 	<gtView>
 	^ aView forward
@@ -99,7 +101,7 @@ AsuConnection >> gtIsp3View: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 AsuConnection >> gtSolutions: aView [
 	<gtView>
 	^ aView forward
@@ -108,7 +110,7 @@ AsuConnection >> gtSolutions: aView [
 		view: #gtLiveFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 AsuConnection >> gtView1For: aView [
 	<gtView>
 	^ aView forward
@@ -119,7 +121,7 @@ AsuConnection >> gtView1For: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 AsuConnection >> gtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -129,7 +131,7 @@ AsuConnection >> gtViewFor: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> injectMapping: aSchemaType [
 	^ [ :m | 
 	m
@@ -137,17 +139,17 @@ AsuConnection >> injectMapping: aSchemaType [
 		reader: [ :r | (r nextListAs: aSchemaType) collect: [ :c | c connection: self ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> tasks [
 	^ tasks
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AsuConnection >> tasks: aSubjectTask [
 	tasks := aSubjectTask
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AsuConnection >> workingProgramms: aString [
 	| response array |
 	response := client

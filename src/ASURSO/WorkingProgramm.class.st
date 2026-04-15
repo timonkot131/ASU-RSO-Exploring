@@ -1,6 +1,6 @@
 Class {
-	#name : #WorkingProgramm,
-	#superclass : #Object,
+	#name : 'WorkingProgramm',
+	#superclass : 'Object',
 	#instVars : [
 		'id',
 		'name',
@@ -8,20 +8,22 @@ Class {
 		'isApproved',
 		'connection'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 WorkingProgramm >> gtProgrammTree: aView context: aContext [
 	<gtView>
 	^ aView columnedTree
@@ -34,52 +36,52 @@ WorkingProgramm >> gtProgrammTree: aView context: aContext [
 		children: [ :each | each children  ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> isApproved [
 	^ isApproved
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> isApproved: anObject [
 	isApproved := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> lessons [
 	^ self topics flatCollect: #lessons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WorkingProgramm >> printOn: aStream [ 
 aStream << self name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> topics [
 	^ topics
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WorkingProgramm >> topics: anObject [
 	topics := anObject
 ]

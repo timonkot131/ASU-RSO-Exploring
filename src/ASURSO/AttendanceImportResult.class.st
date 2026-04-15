@@ -1,14 +1,16 @@
 Class {
-	#name : #AttendanceImportResult,
-	#superclass : #Object,
+	#name : 'AttendanceImportResult',
+	#superclass : 'Object',
 	#instVars : [
 		'result',
 		'terminateBlock'
 	],
-	#category : #'ASURSO-Reports'
+	#category : 'ASURSO-Reports',
+	#package : 'ASURSO',
+	#tag : 'Reports'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AttendanceImportResult >> gtResultTree: aView [
 	<gtView>
 	| stream |
@@ -28,22 +30,22 @@ AttendanceImportResult >> gtResultTree: aView [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AttendanceImportResult >> result [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AttendanceImportResult >> result: anObject [
 	result := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AttendanceImportResult >> terminateBlock [
 	^ terminateBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AttendanceImportResult >> terminateBlock: anObject [
 	terminateBlock := anObject
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #SubjectTable,
-	#superclass : #Object,
+	#name : 'SubjectTable',
+	#superclass : 'Object',
 	#instVars : [
 		'lessons',
 		'students',
@@ -9,34 +9,36 @@ Class {
 		'workingProgram',
 		'teacher'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectTable >> cleanTasks: aSubjectLeson [
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> clearAllTasks [
 	self lessons do: [ :each | self studySubject removeTaskForLesson: each ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SubjectTable >> client [ 
 ^ connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> connection [
 	^ connection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> connection: anObject [
 	connection := anObject
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> gtBadAttendance: aView [
 	<gtView>
 	^ aView forward
@@ -53,7 +55,7 @@ SubjectTable >> gtBadAttendance: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> gtLessonsFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -102,7 +104,7 @@ SubjectTable >> gtLessonsFor: aView [
 					element phlow fireViewUpdateWish ] ]
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> gtStudentsFor: aView [
 	<gtView>
 	^ aView forward
@@ -111,7 +113,7 @@ SubjectTable >> gtStudentsFor: aView [
 		view: #gtItemsFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> gtTeacherFor: aView [
 	<gtView>
 	^ aView forward
@@ -120,7 +122,7 @@ SubjectTable >> gtTeacherFor: aView [
 		view: #gtStringFor:
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 SubjectTable >> gtWorkingProgramFor: aView [
 	<gtView>
 	^ aView forward
@@ -129,47 +131,47 @@ SubjectTable >> gtWorkingProgramFor: aView [
 		view: #gtProgrammTree:context:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> lessons [
 	^ lessons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> lessons: anObject [
 	lessons := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SubjectTable >> printOn: aStream [
 self studySubject printOn: aStream.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> students [
 	^ students
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> students: anObject [
 	students := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> studySubject [
 	^ studySubject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> studySubject: anObject [
 	studySubject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> workingProgramm [
 	^ workingProgram
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubjectTable >> workingProgramm: anObject [
 	workingProgram := anObject
 ]

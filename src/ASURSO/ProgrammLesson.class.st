@@ -1,6 +1,6 @@
 Class {
-	#name : #ProgrammLesson,
-	#superclass : #Object,
+	#name : 'ProgrammLesson',
+	#superclass : 'Object',
 	#instVars : [
 		'id',
 		'date',
@@ -12,85 +12,87 @@ Class {
 		'name',
 		'connection'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammLesson >> = anObject [
 ^((anObject isKindOf: ProgrammLesson) or: [ anObject isKindOf: SubjectLesson]) ifTrue: [ self name = anObject name ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammLesson >> client [
 	^self connection client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> connection [
 	^ connection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammLesson >> connection: anAsuConnection [ 
 	connection := anAsuConnection.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> date [
 	^ date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> date: anObject [
 	date := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> duration [
 	^ duration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> duration: anObject [
 	duration := anObject
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 ProgrammLesson >> hash [
 	^ self name hash hashMultiply
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammLesson >> name [ 
 ^name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ProgrammLesson >> printOn: aStream [ 
 aStream << self name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> type [
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProgrammLesson >> type: anObject [
 	type := anObject
 ]

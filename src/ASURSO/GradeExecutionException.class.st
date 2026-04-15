@@ -1,8 +1,10 @@
 Class {
-	#name : #GradeExecutionException,
-	#superclass : #Exception,
+	#name : 'GradeExecutionException',
+	#superclass : 'Exception',
 	#instVars : [
 		'status'
 	],
-	#category : #'ASURSO-Model'
+	#category : 'ASURSO-Model',
+	#package : 'ASURSO',
+	#tag : 'Model'
 }

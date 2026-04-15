@@ -1,14 +1,16 @@
 Class {
-	#name : #NoGroupError,
-	#superclass : #Error,
+	#name : 'NoGroupError',
+	#superclass : 'Error',
 	#instVars : [
 		'view',
 		'object'
 	],
-	#category : #'ASURSO-Exceptions'
+	#category : 'ASURSO-Exceptions',
+	#package : 'ASURSO',
+	#tag : 'Exceptions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 NoGroupError >> asDebuggableElement [
 	^ PhlowDebuggableElementStencil new
 		freeze: self; 
@@ -17,22 +19,22 @@ NoGroupError >> asDebuggableElement [
 		asElement. 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NoGroupError >> object [
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NoGroupError >> object: anObject [
 	object := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NoGroupError >> view [
 	^ view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NoGroupError >> view: anObject [
 	view := anObject
 ]
