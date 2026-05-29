@@ -120,29 +120,32 @@ ObsidianImporter >> gradeExecutions [
 							table := subject subjectTable.
 							tasks := taskKeys & (table lessons flatCollect: #tasks).
 							gradesAssoc := tasks
-									collect: [ :task | 
-										| lesson raw |
-										lesson := table lessons detect: [ :each | each tasks includes: task ].
-										raw := mapped
+									flatCollect: [ :task | 
+										| lessons  |
+										lessons := table lessons select: [ :each | each tasks includes: task ].									
+										lessons collect: [ :lesson |
+											| raw lessonTask |
+											lessonTask := ({task} & lesson tasks) first.
+											raw := mapped
 												select: [ :each | 
 													{(each at: #task) = task.
 													 (each at: #group) = group.
 													 (each at: #subject) = subject} allSatisfy: #value ].
-										(lesson -> task) -> (raw
-											collect: [ :each | 
-												| student grade |
-												
-												[student := ({each at: #student} & table students) first.] on: Exception do: [:e |
-												(Error error: 'Такого студента нету в группе')].
+											(lesson -> lessonTask) -> (raw
+												collect: [ :each | 
+													| student grade |
+													[student := ({each at: #student} & table students) first.] on: Exception do: [:e |
+														(Error error: 'Такого студента нету в группе')].
 												
 												grade := GradeExecution numToWord: (each at: #grade ifPresent: #asInteger ifAbsent: [ 5 ]).
+												
 												GradeExecution new
 													importer: self; 
 													subject: subject;
 													lesson: lesson;
 													student: student;
-													task: task;
-													grade: grade ])
+													task: lessonTask;
+													grade: grade ]) ]
 													].
 							table -> gradesAssoc asDictionary ].
 				group -> subjectTableAssoc asDictionary ].

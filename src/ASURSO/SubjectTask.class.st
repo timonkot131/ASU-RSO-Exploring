@@ -6,7 +6,8 @@ Class {
 		'file',
 		'id',
 		'type',
-		'attachments'
+		'attachments',
+		'isRequired'
 	],
 	#category : 'ASURSO-Model',
 	#package : 'ASURSO',
@@ -61,6 +62,21 @@ SubjectTask >> id [
 { #category : 'accessing' }
 SubjectTask >> id: anObject [
 	id := anObject
+]
+
+{ #category : 'initialize' }
+SubjectTask >> initialize [
+isRequired := true.
+]
+
+{ #category : 'accessing' }
+SubjectTask >> isRequired [
+	^ isRequired
+]
+
+{ #category : 'accessing' }
+SubjectTask >> isRequired: anObject [
+	isRequired := anObject
 ]
 
 { #category : 'accessing' }

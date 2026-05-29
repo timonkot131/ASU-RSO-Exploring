@@ -158,10 +158,7 @@ ObsidianReplica >> gtPracticeFor: aView [
 		title: 'Практика';
 		priority: 10;
 		object: [ 
-			(self journal: self practice)
-				collect: [ :c | 
-					
-				]
+			(self journal: self practice) title: 'Практические'.
 			];
 		view: #gtViewFor:
 ]
