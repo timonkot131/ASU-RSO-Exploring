@@ -71,7 +71,7 @@ isRequired := true.
 
 { #category : 'accessing' }
 SubjectTask >> isRequired [
-	^ isRequired
+	^ type = 'PracticalWork'
 ]
 
 { #category : 'accessing' }

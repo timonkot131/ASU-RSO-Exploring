@@ -61,7 +61,14 @@ GradeExecution >> absenceType: anObject [
 
 { #category : 'accessing' }
 GradeExecution >> grade [
-	^ grade
+	^grade ifNil: [
+		task ifNotNil: [:item | 
+				item isRequired ifTrue: [ 
+					GradeExecution numToWord: 2
+				] 
+				ifFalse: [ nil ]
+			]
+	]
 ]
 
 { #category : 'accessing' }
@@ -103,7 +110,7 @@ GradeExecution >> lesson: anObject [
 { #category : 'as yet unclassified' }
 GradeExecution >> printOn: aStream [
 	student printOn: aStream.
-	aStream << (' | ' , (grade ifNotNil: [grade asString] ifNil: [ absenceType reason ifNil: ['Present'] ]) ). 
+	aStream << (' | ' , (self grade ifNotNil: [self grade asString] ifNil: [ absenceType reason ifNil: ['Present'] ]) ). 
 ]
 
 { #category : 'accessing' }

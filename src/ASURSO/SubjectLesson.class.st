@@ -95,6 +95,15 @@ SubjectLesson >> gtMarks: aView [
 ]
 
 { #category : 'views' }
+SubjectLesson >> gtTasksFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Задания';
+		object: [ self tasks ];
+		view: #gtItemsFor:
+]
+
+{ #category : 'views' }
 SubjectLesson >> gtView1For: aView [
 	<gtView>
 	^ aView forward

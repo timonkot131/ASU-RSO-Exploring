@@ -43,7 +43,7 @@ StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArra
 					do: [ :each | 
 						dict
 							at: each id asString
-							put: {'isRequired' -> true.
+							put: {'isRequired' -> aSubjectTask isRequired.
 									'value' -> nil} asDictionary ].
 				STONJSON toString: dict ].
 	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks'
@@ -181,7 +181,7 @@ StudySubject >> forLesson: aSubjectLesson task: aSubjectTask grades: aCollection
 					do: [ :execution | 
 						dict
 							at: execution student id asString
-							put: {'isRequired' -> execution required.
+							put: {'isRequired' -> aSubjectTask isRequired.
 									'value' -> execution grade} asDictionary ].
 				STONJSON toString: dict ].
 	path := '/services/journal/gradebook/{1}/subjects/{2}/lessons/{3}/tasks/{4}'

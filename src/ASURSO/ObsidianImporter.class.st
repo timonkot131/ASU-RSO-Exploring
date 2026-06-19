@@ -248,7 +248,11 @@ ObsidianImporter >> importGrades: aDictionary [
 					lesson := each key key.
 					task := each key value.
 					studentToGrade := (each value) | (table students
-							collect: [ :student | GradeExecution new student: student ]) .
+							collect: [ :student | 
+								GradeExecution new 
+								 student: student;
+								 task: task;
+								 lesson: lesson ]) .
 					table studySubject
 						forLesson: lesson
 						task: task
