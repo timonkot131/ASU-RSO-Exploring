@@ -6,9 +6,8 @@ Class {
 		'attendance',
 		'grades'
 	],
-	#category : 'ASURSO-Model',
-	#package : 'ASURSO',
-	#tag : 'Model'
+	#category : 'ASURSO Obsidian',
+	#package : 'ASURSO Obsidian'
 }
 
 { #category : 'accessing' }

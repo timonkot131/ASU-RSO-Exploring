@@ -5,8 +5,8 @@ Class {
 		'view',
 		'object'
 	],
-	#category : 'ASURSO-Exceptions',
-	#package : 'ASURSO',
+	#category : 'ASURSO Obsidian-Exceptions',
+	#package : 'ASURSO Obsidian',
 	#tag : 'Exceptions'
 }
 

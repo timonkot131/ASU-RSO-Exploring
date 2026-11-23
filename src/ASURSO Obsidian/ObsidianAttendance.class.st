@@ -7,10 +7,14 @@ Class {
 		'data',
 		'announcer'
 	],
-	#category : 'ASURSO-Model',
-	#package : 'ASURSO',
-	#tag : 'Model'
+	#category : 'ASURSO Obsidian',
+	#package : 'ASURSO Obsidian'
 }
+
+{ #category : 'as yet unclassified' }
+ObsidianAttendance class >> new [
+    ^ self basicNew initialize
+]
 
 { #category : 'as yet unclassified' }
 ObsidianAttendance >> = anObject [

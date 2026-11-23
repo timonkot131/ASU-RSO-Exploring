@@ -31,7 +31,7 @@ WorkingProgramm >> gtProgrammTree: aView context: aContext [
 		title: 'Наполнение';
 		items: [ self topics  ];
 		contextItemLabel: 'Скопировать' action: [ :element :item |
-			Clipboard clipboardText: item asString.
+		"	Clipboard clipboardText: item asString."
 		];
 		children: [ :each | each children  ]
 ]

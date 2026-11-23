@@ -99,9 +99,9 @@ StudentGroup >> gtView3For: aView [
 	<gtView>
 	^ aView forward
 		priority: 7;
-		title: 'Инструментальные средства';
+		title: 'Компьютерные сети';
 		object: [ self activeJournal scheduleSubjects
-				detect: [ :x | x name includesSubstring: 'Инструментальные средства' ] ];
+				detect: [ :x | x name includesSubstring: 'Компьютерные сети' ] ];
 		view: #gtPairsFor:
 ]
 
@@ -122,6 +122,17 @@ StudentGroup >> gtViewFor: aView [
 		priority: 20;
 		object: [ self journal ];
 		view: #gtItemsFor:
+]
+
+{ #category : 'views' }
+StudentGroup >> gtViewProgFor: aView [
+	<gtView>
+	^ aView forward
+		priority: 7;
+		title: 'Разработка программных модулей';
+		object: [ self activeJournal scheduleSubjects
+				detect: [ :x | x name includesSubstring: 'Разработка программных модулей' ] ];
+		view: #gtPairsFor:
 ]
 
 { #category : 'comparing' }

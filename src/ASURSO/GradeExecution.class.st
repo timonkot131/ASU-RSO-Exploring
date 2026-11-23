@@ -16,6 +16,11 @@ Class {
 	#tag : 'Model'
 }
 
+{ #category : 'as yet unclassified' }
+GradeExecution class >> new [
+    ^ self basicNew initialize
+]
+
 { #category : 'utility' }
 GradeExecution class >> numToWord: anInteger [
 	^{

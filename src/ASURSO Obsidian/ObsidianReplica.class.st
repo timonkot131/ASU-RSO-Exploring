@@ -11,9 +11,8 @@ Class {
 		'practice',
 		'group'
 	],
-	#category : 'ASURSO-Model',
-	#package : 'ASURSO',
-	#tag : 'Model'
+	#category : 'ASURSO Obsidian',
+	#package : 'ASURSO Obsidian'
 }
 
 { #category : 'as yet unclassified' }
@@ -170,7 +169,7 @@ ObsidianReplica >> journal: source [
 	attendantSource := (self loadSource: self attendanceSource)
 			collect: [ :each | ObsidianAttendance new data: each ].
 	atts := newAts & attendantSource | newAts.
-	items := (atts sort: self sortByNameThenActivity) collect: #asElement.
+	items := (atts sort: self sortByNameThenActivity) collect: [:x | x asElement].
 
 	element := BlElement new
 			layout: BlLinearLayout horizontal;

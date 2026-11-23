@@ -235,7 +235,7 @@ SubjectLesson >> subjectTable: anObject [
 
 { #category : 'accessing' }
 SubjectLesson >> taskString [
-	^ ', ' join: (self tasks collect: #name)
+	^ ', ' join: (self tasks collect: [:task | task name])
 ]
 
 { #category : 'accessing' }

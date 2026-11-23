@@ -5,8 +5,8 @@ Class {
 		'result',
 		'terminateBlock'
 	],
-	#category : 'ASURSO-Reports',
-	#package : 'ASURSO',
+	#category : 'ASURSO Obsidian-Reports',
+	#package : 'ASURSO Obsidian',
 	#tag : 'Reports'
 }
 

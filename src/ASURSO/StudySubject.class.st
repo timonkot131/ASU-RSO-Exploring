@@ -55,11 +55,11 @@ StudySubject >> addTask: aSubjectTask forLesson: aSubjectLesson forUsers: anArra
 		(self client multiPartFormDataEntity
 				addPart: (ZnMimePart fieldName: 'type' value: aSubjectTask type);
 				addPart: (ZnMimePart fieldName: 'topic' value: aSubjectTask name);
-				addPart: (ZnMimePart fieldName: 'marks' value: requiredMarks);
+				addPart: (ZnMimePart fieldName: 'marks' value: requiredMarks)";
 				addPart: (ZnMimePart
 						fieldName: 'file'
 						fileName: aSubjectTask file basename
-						entity: (ZnEntity bytes: aSubjectTask file binaryContents))).
+						entity: (ZnEntity bytes: aSubjectTask file binaryContents))").
 		
 	self client post.
 ]
@@ -236,8 +236,8 @@ StudySubject >> gtPerfomance: aView context: aContext [
 	^ aView forward
 		title: 'Успеваемость';
 		object: [ | quality absolute attOnly totals fives threes fours nas |
-			totals := self totals collect: #final.
-			attOnly := totals select: #isNumber.
+			totals := self totals collect: [:each | each final].
+			attOnly := totals select: [:each | each isNumber].
 			absolute := (attOnly size / totals size) asFloat.
 			quality := ((attOnly select: [ :each | each > 3 ]) size / totals size)
 					asFloat.
@@ -255,22 +255,6 @@ StudySubject >> gtPerfomance: aView context: aContext [
 				at: 'н-ки' put: nas; yourself);
 				yourself ];
 		view: #gtTreeFor:
-]
-
-{ #category : 'as yet unclassified' }
-StudySubject >> gtSubjectTable: anAction [
-<gtAction>
-	^ anAction button
-		priority: 76;
-		icon: BrGlamorousVectorIcons note;
-		tooltip: 'Открыть журнал предмета';
-		id: GtInspectorInspectButtonId;
-		action: [ :aButton |
-			aButton phlow spawnObject: self subjectTable ];
-		primaryModifierAction: [ :aButton |
-				aButton phlow showObject: self subjectTable ]
-			mouseCursor: BlCopyCursor new
-
 ]
 
 { #category : 'views' }
@@ -493,7 +477,7 @@ StudySubject >> threes [
 				exs
 					select: [ :v | v isNotNil and: [ v grade isNil ] ]
 					thenCollect: [ :v | v copy grade: 'Three' ] ].
-	^ res groupedBy: #student
+	^ res groupedBy: [:each | each student]
 ]
 
 { #category : 'API' }
@@ -512,7 +496,7 @@ StudySubject >> totals [
 				TotalSubjectRow new
 					firstName: (each at: #firstName);
 					lastName: (each at: #lastName);
-					middleName: (each at: #middleName);
+					middleName: (each at: #middleName ifAbsentPut: ['']);
 					id: (each at: #id) ].
 	^rows
 		do: [ :each | 

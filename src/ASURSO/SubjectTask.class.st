@@ -15,6 +15,11 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+SubjectTask class >> new [
+    ^ self basicNew initialize
+]
+
+{ #category : 'as yet unclassified' }
 SubjectTask >> = anObject [
 (anObject isKindOf: self class) ifFalse: [^false].
 ^ self name = anObject name

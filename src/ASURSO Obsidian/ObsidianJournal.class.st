@@ -9,9 +9,8 @@ Class {
 		'title',
 		'sourced'
 	],
-	#category : 'ASURSO-Model',
-	#package : 'ASURSO',
-	#tag : 'Model'
+	#category : 'ASURSO Obsidian',
+	#package : 'ASURSO Obsidian'
 }
 
 { #category : 'accessing' }
@@ -31,7 +30,7 @@ ObsidianJournal >> gtViewFor: aView [
 		title: 'Live';
 		object: [ self element ];
 		actionButtonIcon: BrGlamorousVectorIcons savetodisk 
-			 action: [self replica export: (((self items | self sourced) select: #isForExport thenCollect: #data) ) source: self source];
+			 action: [self replica export: (((self items | self sourced) select: [:each | each isForExport] thenCollect: [:each | each data]) ) source: self source];
 		view: #gtLiveFor:
 ]
 
