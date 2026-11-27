@@ -1,6 +1,6 @@
 Extension { #name : 'OrderedDictionary' }
 
-{ #category : '*ASURSO' }
+{ #category : '*asurso' }
 OrderedDictionary >> lookupThree: aView [
 	<gtView>
 	^ aView columnedTree

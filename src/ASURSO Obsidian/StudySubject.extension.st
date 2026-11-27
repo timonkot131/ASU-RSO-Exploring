@@ -1,6 +1,6 @@
 Extension { #name : 'StudySubject' }
 
-{ #category : '*ASURSO Obsidian*' }
+{ #category : '*asurso obsidian' }
 StudySubject >> gtSubjectTable: anAction [
 <gtAction>
 	^ anAction button

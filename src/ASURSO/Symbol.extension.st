@@ -1,6 +1,6 @@
 Extension { #name : 'Symbol' }
 
-{ #category : '*ASURSO*' }
+{ #category : '*asurso' }
 Symbol >> at [ 
 ^[:each | each at: self]
 ]
