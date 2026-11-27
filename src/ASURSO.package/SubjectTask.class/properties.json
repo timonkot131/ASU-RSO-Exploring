@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"file",
+		"id",
+		"type",
+		"attachments",
+		"isRequired"
+	],
+	"name" : "SubjectTask",
+	"type" : "normal"
+}

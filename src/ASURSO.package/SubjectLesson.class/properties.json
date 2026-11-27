@@ -1,0 +1,26 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"id",
+		"date",
+		"scheduleLessonId",
+		"type",
+		"tasks",
+		"markSets",
+		"duration",
+		"startTime",
+		"endTime",
+		"name",
+		"plannedLessons",
+		"studySubject",
+		"workingProgramm",
+		"subjectTable"
+	],
+	"name" : "SubjectLesson",
+	"type" : "normal"
+}

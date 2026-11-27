@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Exception",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"status"
+	],
+	"name" : "GradeExecutionException",
+	"type" : "normal"
+}

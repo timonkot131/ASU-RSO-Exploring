@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO Obsidian",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"attendanceSource",
+		"gradeSource",
+		"groupSource",
+		"practicalSources",
+		"lectionSources",
+		"lection",
+		"practice",
+		"group"
+	],
+	"name" : "ObsidianReplica",
+	"type" : "normal"
+}

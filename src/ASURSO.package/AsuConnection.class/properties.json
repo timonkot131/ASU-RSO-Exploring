@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"credentials",
+		"data",
+		"client",
+		"tasks"
+	],
+	"name" : "AsuConnection",
+	"type" : "normal"
+}

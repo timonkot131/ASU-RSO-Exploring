@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstName",
+		"lastName",
+		"middleName",
+		"id"
+	],
+	"name" : "SubjectStudent",
+	"type" : "normal"
+}
