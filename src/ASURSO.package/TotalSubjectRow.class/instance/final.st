@@ -1,3 +1,0 @@
-accessing
-final
-	^ final

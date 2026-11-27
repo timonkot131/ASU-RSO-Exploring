@@ -1,3 +1,0 @@
-accessing
-students
-	^ students

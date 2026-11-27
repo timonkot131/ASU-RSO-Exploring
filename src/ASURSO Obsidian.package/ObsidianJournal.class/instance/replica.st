@@ -1,3 +1,0 @@
-accessing
-replica
-	^ replica

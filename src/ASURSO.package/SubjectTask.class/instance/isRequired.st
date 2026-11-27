@@ -1,3 +1,0 @@
-accessing
-isRequired
-	^ type = 'PracticalWork'

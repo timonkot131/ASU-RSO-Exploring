@@ -1,3 +1,0 @@
-accessing
-client
-	^ connection client
