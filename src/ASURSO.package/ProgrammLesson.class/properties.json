@@ -1,0 +1,21 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"id",
+		"date",
+		"type",
+		"markSets",
+		"duration",
+		"startTime",
+		"endTime",
+		"name",
+		"connection"
+	],
+	"name" : "ProgrammLesson",
+	"type" : "normal"
+}

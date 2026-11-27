@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO Obsidian-Reports",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"result",
+		"terminateBlock"
+	],
+	"name" : "GradeImportResult",
+	"type" : "normal"
+}

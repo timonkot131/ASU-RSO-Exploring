@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstName",
+		"lastName",
+		"middleName",
+		"id",
+		"average",
+		"final"
+	],
+	"name" : "TotalSubjectRow",
+	"type" : "normal"
+}

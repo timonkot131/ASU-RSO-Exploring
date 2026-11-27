@@ -1,0 +1,3 @@
+accessing
+isRequired
+	^ type = 'PracticalWork'

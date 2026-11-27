@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isRemember",
+		"password",
+		"login"
+	],
+	"name" : "AsuCredentials",
+	"type" : "normal"
+}

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"sectionIndex",
+		"index",
+		"lessons"
+	],
+	"name" : "ProgrammTopic",
+	"type" : "normal"
+}

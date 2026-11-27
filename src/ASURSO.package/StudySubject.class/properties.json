@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"connection",
+		"plannedHours",
+		"id",
+		"name",
+		"remarks",
+		"isAttendanceEditable",
+		"subjectGrade"
+	],
+	"name" : "StudySubject",
+	"type" : "normal"
+}

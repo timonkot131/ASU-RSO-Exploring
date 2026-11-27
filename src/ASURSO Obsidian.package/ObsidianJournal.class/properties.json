@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO Obsidian",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"source",
+		"items",
+		"element",
+		"replica",
+		"title",
+		"sourced"
+	],
+	"name" : "ObsidianJournal",
+	"type" : "normal"
+}

@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"response",
+		"group",
+		"subject",
+		"lesson",
+		"client",
+		"task",
+		"data"
+	],
+	"name" : "ExecutionStatus",
+	"type" : "normal"
+}

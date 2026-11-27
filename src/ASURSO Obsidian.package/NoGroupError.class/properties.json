@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Error",
+	"category" : "ASURSO Obsidian-Exceptions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"view",
+		"object"
+	],
+	"name" : "NoGroupError",
+	"type" : "normal"
+}

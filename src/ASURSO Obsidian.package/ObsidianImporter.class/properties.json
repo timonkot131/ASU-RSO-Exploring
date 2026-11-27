@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ASURSO Obsidian",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"connection",
+		"attendance",
+		"grades"
+	],
+	"name" : "ObsidianImporter",
+	"type" : "normal"
+}
