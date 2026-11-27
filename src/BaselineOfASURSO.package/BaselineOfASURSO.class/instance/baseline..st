@@ -2,7 +2,7 @@ as yet unclassified
 baseline: spec
 	<baseline>
 		^ spec for: #common do: [
-			spec baseline: 'NeoJSON' with: [ spec repository: 'github://svenvc/NeoJSON/repository' ].
+			spec baseline: 'NeoJSON' with: [ spec repository: 'github://timonkot131/NeoJSON-Gemstone/repository' ].
 			spec package: 'ASURSO' with: [spec requires: #('NeoJSON')] .
 			spec package: 'ASURSO Obsidian' with: [spec requires: #('ASURSO')].
 			spec
